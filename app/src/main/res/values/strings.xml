@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Inilo</string>
+    <string name="improvise_for_your_daily_needs">Improvise for your daily needs</string>
+    <string name="basic_needs_enumerated"><![CDATA[Education, Electricity, Water, Sanitation, Food & Security - because you deserve them all]]></string>
+    <string name="welcome_to">Welcome to</string>
+    <string name="quick_actions">Quick Actions</string>
+    <string name="quick_action_card_icon">Quick action card icon</string>
+    <string name="scan_food">Scan Food</string>
+    <string name="safety_check">Safety Check</string>
+    <string name="explore_solutions">Explore Solutions</string>
+    <string name="tips_available">tips available</string>
+    <string name="education_and_learning"><![CDATA[Education & Learning]]></string>
+    <string name="clean_water_soltions">Clean Water Solutions</string>
+    <string name="power_alternatives">Power Alternatives</string>
+    <string name="health_and_sanitation"><![CDATA[Health & Sanitation]]></string>
+    <string name="food_solutions">Food Solutions</string>
+    <string name="safety_and_security"><![CDATA[Safety & Security]]></string>
+</resources>
