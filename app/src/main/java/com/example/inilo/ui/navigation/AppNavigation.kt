@@ -1,6 +1,5 @@
 package com.example.inilo.ui.navigation
 
-import android.util.Log
 import androidx.compose.animation.ExperimentalSharedTransitionApi
 import androidx.compose.animation.SharedTransitionLayout
 import androidx.compose.runtime.Composable
@@ -26,7 +25,6 @@ fun AppNavigation() {
                     onSolutionClick = { solutionTypes ->
                         when (solutionTypes) {
                             SolutionScreenType.Education -> {
-                                Log.v("App Navigation", "Landing Screen")
                                 navController.navigate(Navigate.Screen.EducationScreen.route)
                             }
 
@@ -55,7 +53,6 @@ fun AppNavigation() {
             }
 
             composable(route = Navigate.Screen.EducationScreen.route) {
-                Log.v("App Navigation", "Education Screen")
                 EducationScreen(
                     onBack = { navController.popBackStack() }
                 )

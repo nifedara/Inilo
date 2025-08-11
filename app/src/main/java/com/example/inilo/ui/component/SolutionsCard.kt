@@ -27,7 +27,7 @@ fun SolutionsCard(modifier: Modifier, title: Int, onClick: () -> Unit) {
     Card(
         shape = RoundedCornerShape(16.dp),
         modifier = modifier.padding(bottom = 16.dp)
-            .clickable { onClick }
+            .clickable { onClick() }
     ) {
         Row(
             modifier = Modifier.fillMaxWidth(),
