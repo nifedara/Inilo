@@ -26,7 +26,7 @@ import com.example.inilo.R
 import com.example.inilo.ui.component.IniloScaffold
 
 @Composable
-fun EducationScreen(
+fun WaterScreen(
     onBack: () -> Unit
 ) {
     IniloScaffold(
@@ -60,13 +60,13 @@ fun EducationScreen(
             }
 
             Text (
-                text = stringResource(R.string.education_and_learning),
+                text = stringResource(R.string.clean_water_soltions),
                 modifier = Modifier.padding(bottom = 4.dp),
                 fontWeight = FontWeight.Bold,
                 fontSize = 24.sp
             )
             Text (
-                text = stringResource(R.string.smart_learning_techiques_and_resources),
+                text = stringResource(R.string.water_purification_methods),
                 modifier = Modifier.padding(bottom = 6.dp),
                 textAlign = TextAlign.Center
             )

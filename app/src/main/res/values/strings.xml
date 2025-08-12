@@ -15,4 +15,11 @@
     <string name="health_and_sanitation"><![CDATA[Health & Sanitation]]></string>
     <string name="food_solutions">Food Solutions</string>
     <string name="safety_and_security"><![CDATA[Safety & Security]]></string>
+    <string name="smart_learning_techiques_and_resources">Smart learning techniques and educational resources</string>
+    <string name="water_purification_methods">Water purification and safe drinking methods</string>
+    <string name="hygiene_practices_and_sanitation_solutions">Hygiene practices and sanitation solutions</string>
+    <string name="personal_safety_and_security_measures">Personal safety and security measures</string>
+    <string name="easy">Easy</string>
+    <string name="no_tips_yet">No tips yet</string>
+    <string name="check_back_later">Check back later!</string>
 </resources>

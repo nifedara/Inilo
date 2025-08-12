@@ -1,6 +1,5 @@
 package com.example.inilo.ui.screen
 
-import android.util.Log
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -123,8 +122,6 @@ fun LandingScreen(
                         title = solution.stringResId,
                         onClick = { onSolutionClick(solution.toScreenType()) }
                     )
-
-                    Log.v("App Navigation", "${solution.toScreenType()}")
                     if (index == groupedSolutions.lastIndex) {
                         Spacer(modifier = Modifier.height(50.dp))
                     }

@@ -8,7 +8,12 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.inilo.ui.component.SolutionScreenType
 import com.example.inilo.ui.screen.EducationScreen
+import com.example.inilo.ui.screen.FoodScreen
+import com.example.inilo.ui.screen.HealthAndSanitationScreen
 import com.example.inilo.ui.screen.LandingScreen
+import com.example.inilo.ui.screen.PowerScreen
+import com.example.inilo.ui.screen.SafetyAndSecurityScreen
+import com.example.inilo.ui.screen.WaterScreen
 
 @OptIn(ExperimentalSharedTransitionApi::class)
 @Composable
@@ -54,6 +59,36 @@ fun AppNavigation() {
 
             composable(route = Navigate.Screen.EducationScreen.route) {
                 EducationScreen(
+                    onBack = { navController.popBackStack() }
+                )
+            }
+
+            composable(route = Navigate.Screen.WaterScreen.route) {
+                WaterScreen(
+                    onBack = { navController.popBackStack() }
+                )
+            }
+
+            composable(route = Navigate.Screen.PowerScreen.route) {
+                PowerScreen(
+                    onBack = { navController.popBackStack() }
+                )
+            }
+
+            composable(route = Navigate.Screen.HealthAndSanitationScreen.route) {
+                HealthAndSanitationScreen(
+                    onBack = { navController.popBackStack() }
+                )
+            }
+
+            composable(route = Navigate.Screen.FoodScreen.route) {
+                FoodScreen(
+                    onBack = { navController.popBackStack() }
+                )
+            }
+
+            composable(route = Navigate.Screen.SafetyAndSecurityScreen.route) {
+                SafetyAndSecurityScreen(
                     onBack = { navController.popBackStack() }
                 )
             }

@@ -26,7 +26,7 @@ import com.example.inilo.R
 import com.example.inilo.ui.component.IniloScaffold
 
 @Composable
-fun EducationScreen(
+fun PowerScreen(
     onBack: () -> Unit
 ) {
     IniloScaffold(
@@ -60,13 +60,13 @@ fun EducationScreen(
             }
 
             Text (
-                text = stringResource(R.string.education_and_learning),
+                text = stringResource(R.string.power_alternatives),
                 modifier = Modifier.padding(bottom = 4.dp),
                 fontWeight = FontWeight.Bold,
                 fontSize = 24.sp
             )
             Text (
-                text = stringResource(R.string.smart_learning_techiques_and_resources),
+                text = stringResource(R.string.power_alternatives),
                 modifier = Modifier.padding(bottom = 6.dp),
                 textAlign = TextAlign.Center
             )
