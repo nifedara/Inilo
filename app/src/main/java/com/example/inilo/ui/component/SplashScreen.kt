@@ -23,17 +23,18 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.inilo.ui.component.util.iniloFontFamily
 import kotlinx.coroutines.delay
 
 @Composable
 fun IniloSplashAnimation(onAnimationEnd: () -> Unit) {
     val letters = listOf("I", "N", "I", "L", "O")
     val colors = listOf(
-        Color(0xFF1565C0),
-        Color(0xFFF57C00),
-        Color(0xFF43A047),
-        Color(0xFFD32F2F),
-        Color(0xFFDF03FC)
+        Color(0xFFAFBC88),
+        Color(0xFF40531B),
+        Color(0xFF7AA095),
+        Color(0xFFFFC09F),
+        Color(0xFF618B4A),
     )
 
     var visibleCount by remember { mutableIntStateOf(0) }
@@ -62,6 +63,7 @@ fun IniloSplashAnimation(onAnimationEnd: () -> Unit) {
                     text = letter,
                     fontSize = 64.sp,
                     fontWeight = FontWeight.Bold,
+                    fontFamily = iniloFontFamily,
                     color = colors[index]
                 )
             }

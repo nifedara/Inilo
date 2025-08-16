@@ -25,6 +25,7 @@ import androidx.compose.ui.unit.sp
 import com.example.inilo.R
 import com.example.inilo.ui.component.IniloScaffold
 import com.example.inilo.ui.component.TipCard
+import com.example.inilo.ui.component.util.iniloFontFamily
 
 @Composable
 fun SafetyAndSecurityScreen(
@@ -33,11 +34,11 @@ fun SafetyAndSecurityScreen(
     IniloScaffold(
         onBack = { onBack() },
         pageTitle = "",
-        appBarColor = Color(0xFF1A91FF)
+        appBarColor = Color(0xFFBD90DF)
     ) {
         Column {
             Column(
-                modifier = Modifier.background(Color(0xFF1A91FF))
+                modifier = Modifier.background(Color(0xFFBD90DF))
                     .fillMaxWidth()
                     .padding(top = 0.dp, start = 24.dp, end = 24.dp),
                 horizontalAlignment = Alignment.CenterHorizontally,
@@ -65,16 +66,19 @@ fun SafetyAndSecurityScreen(
                     text = stringResource(R.string.safety_and_security),
                     modifier = Modifier.padding(bottom = 4.dp),
                     fontWeight = FontWeight.Bold,
+                    fontFamily = iniloFontFamily,
                     fontSize = 24.sp
                 )
                 Text(
                     text = stringResource(R.string.personal_safety_and_security_measures),
                     modifier = Modifier.padding(bottom = 6.dp),
+                    fontFamily = iniloFontFamily,
                     textAlign = TextAlign.Center
                 )
                 Text(
                     text = stringResource(R.string.tips_available),
                     modifier = Modifier.padding(bottom = 16.dp),
+                    fontFamily = iniloFontFamily,
                     textAlign = TextAlign.Center
                 )
             }

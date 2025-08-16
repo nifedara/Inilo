@@ -24,6 +24,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.inilo.R
 import com.example.inilo.ui.component.IniloScaffold
+import com.example.inilo.ui.component.util.iniloFontFamily
 
 @Composable
 fun PowerScreen(
@@ -32,10 +33,10 @@ fun PowerScreen(
     IniloScaffold(
         onBack = { onBack() },
         pageTitle = "",
-        appBarColor = Color(0xFF1A91FF)
+        appBarColor = Color(0xFFFFE4D6)
     ) {
         Column(
-            modifier = Modifier.background(Color(0xFF1A91FF))
+            modifier = Modifier.background(Color(0xFFFFE4D6))
                 .fillMaxWidth()
                 .padding(top = 0.dp, start = 24.dp, end = 24.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
@@ -63,16 +64,19 @@ fun PowerScreen(
                 text = stringResource(R.string.power_alternatives),
                 modifier = Modifier.padding(bottom = 4.dp),
                 fontWeight = FontWeight.Bold,
+                fontFamily = iniloFontFamily,
                 fontSize = 24.sp
             )
             Text (
                 text = stringResource(R.string.power_alternatives),
                 modifier = Modifier.padding(bottom = 6.dp),
+                fontFamily = iniloFontFamily,
                 textAlign = TextAlign.Center
             )
             Text (
                 text = stringResource(R.string.tips_available),
                 modifier = Modifier.padding(bottom = 16.dp),
+                fontFamily = iniloFontFamily,
                 textAlign = TextAlign.Center
             )
         }

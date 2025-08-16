@@ -1,4 +1,7 @@
-package com.example.inilo.ui.component
+package com.example.inilo.ui.component.util
+
+import com.example.inilo.ui.component.SolutionScreenType
+import com.example.inilo.ui.component.Solutions
 
 fun Solutions.toScreenType(): SolutionScreenType = when (this) {
     Solutions.Education -> SolutionScreenType.Education

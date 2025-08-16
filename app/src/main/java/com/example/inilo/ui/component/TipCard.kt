@@ -21,6 +21,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.inilo.R
+import com.example.inilo.ui.component.util.iniloFontFamily
 
 @Composable
 fun TipCard() {
@@ -39,6 +40,7 @@ fun TipCard() {
                     Text(
                         text = stringResource(R.string.easy),
                         modifier = Modifier.padding(horizontal = 10.dp, vertical = 2.dp),
+                        fontFamily = iniloFontFamily,
                         color = Color.White
                     )
                 }
@@ -47,18 +49,21 @@ fun TipCard() {
 
                 Text(
                     text = "08/08/25",
+                    fontFamily = iniloFontFamily,
                 )
             }
 
             Text(
                 text = "Personal Safety Awareness",
                 modifier = Modifier.padding(top = 10.dp, bottom = 10.dp),
+                fontFamily = iniloFontFamily,
                 fontWeight = FontWeight.Bold,
                 fontSize = 18.sp
             )
 
             Text(
                 text = "Develop situational awareness to stay safe in unfamiliar places",
+                fontFamily = iniloFontFamily,
                 modifier = Modifier.padding(bottom = 16.dp)
             )
 
@@ -70,6 +75,7 @@ fun TipCard() {
                     )
                     Text(
                         text = "1 material",
+                        fontFamily = iniloFontFamily,
                     )
                 }
 
@@ -82,6 +88,7 @@ fun TipCard() {
                     )
                     Text(
                         text = "5 steps",
+                        fontFamily = iniloFontFamily,
                     )
                 }
             }
@@ -94,6 +101,7 @@ fun TipCard() {
                 ) {
                     Text(
                         text = "awareness",
+                        fontFamily = iniloFontFamily,
                         modifier = Modifier.padding(horizontal = 8.dp, vertical = 2.dp),
                         color = Color.Gray
                     )

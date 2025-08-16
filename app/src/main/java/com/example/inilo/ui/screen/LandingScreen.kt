@@ -27,9 +27,12 @@ import androidx.compose.ui.unit.sp
 import com.example.inilo.R
 import com.example.inilo.ui.component.QuickActionCard
 import com.example.inilo.ui.component.SolutionScreenType
-import com.example.inilo.ui.component.Solutions
 import com.example.inilo.ui.component.SolutionsCard
-import com.example.inilo.ui.component.toScreenType
+import com.example.inilo.ui.component.util.cardColors
+import com.example.inilo.ui.component.util.cardIcons
+import com.example.inilo.ui.component.util.groupedSolutions
+import com.example.inilo.ui.component.util.iniloFontFamily
+import com.example.inilo.ui.component.util.toScreenType
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
@@ -45,21 +48,26 @@ fun LandingScreen(
         ) {
             Text(
                 text = stringResource(R.string.welcome_to),
+                fontFamily = iniloFontFamily,
+                fontSize = 22.sp,
                 modifier = Modifier.padding(bottom = 10.dp)
             )
             Text(
                 text = stringResource(R.string.app_name),
+                fontFamily = iniloFontFamily,
                 fontSize = 24.sp,
                 fontWeight = FontWeight.Bold,
                 modifier = Modifier.padding(bottom = 10.dp)
             )
             Text(
                 text = stringResource(R.string.improvise_for_your_daily_needs),
+                fontFamily = iniloFontFamily,
                 modifier = Modifier.padding(bottom = 10.dp)
             )
             Text(
                 text = stringResource(R.string.basic_needs_enumerated),
                 textAlign = TextAlign.Center,
+                fontFamily = iniloFontFamily,
                 modifier = Modifier.padding(bottom = 10.dp)
             )
         }
@@ -72,6 +80,7 @@ fun LandingScreen(
             Text(
                 text = stringResource(R.string.quick_actions),
                 fontSize = 24.sp,
+                fontFamily = iniloFontFamily,
                 fontWeight = FontWeight.Bold,
                 modifier = Modifier.padding(bottom = 10.dp)
             )
@@ -80,22 +89,17 @@ fun LandingScreen(
                 horizontalArrangement = Arrangement.SpaceBetween,
                 modifier = Modifier.fillMaxWidth()
             ) {
-                QuickActionCard(name = R.string.scan_food, modifier = Modifier.weight(0.5f))
+                QuickActionCard(
+                    name = R.string.scan_food, modifier = Modifier.weight(0.5f),
+                    color = Color(0xFFE8EBED)
+                )
                 Spacer(modifier = Modifier.width(12.dp))
-                QuickActionCard(name = R.string.safety_check, modifier = Modifier.weight(0.5f))
+                QuickActionCard(
+                    name = R.string.safety_check, modifier = Modifier.weight(0.5f),
+                    color = Color(0xFFE8EBED)
+                )
             }
             Spacer(modifier = Modifier.padding(bottom = 10.dp))
-
-
-
-            val groupedSolutions = listOf (
-                    Solutions.Education,
-                    Solutions.Water,
-                    Solutions.Power,
-                    Solutions.HealthAndSanitation,
-                    Solutions.Food,
-                    Solutions.SafetyAndSecurity
-            )
 
             LazyColumn {
                 stickyHeader {
@@ -109,6 +113,7 @@ fun LandingScreen(
                         ) {
                             Text(
                                 text = stringResource(R.string.explore_solutions),
+                                fontFamily = iniloFontFamily,
                                 fontSize = 24.sp,
                                 fontWeight = FontWeight.Bold,
                                 modifier = Modifier.padding(top = 20.dp, bottom = 10.dp)
@@ -120,7 +125,9 @@ fun LandingScreen(
                     SolutionsCard(
                         modifier = Modifier.fillMaxWidth(),
                         title = solution.stringResId,
-                        onClick = { onSolutionClick(solution.toScreenType()) }
+                        onClick = { onSolutionClick(solution.toScreenType()) },
+                        color = cardColors[index],
+                        icons = cardIcons[index]
                     )
                     if (index == groupedSolutions.lastIndex) {
                         Spacer(modifier = Modifier.height(50.dp))

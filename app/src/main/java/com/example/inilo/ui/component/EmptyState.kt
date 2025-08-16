@@ -14,6 +14,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.example.inilo.R
+import com.example.inilo.ui.component.util.iniloFontFamily
 
 @Composable
 fun TipEmptyState() {
@@ -29,6 +30,7 @@ fun TipEmptyState() {
 
         Text(
             text = stringResource(R.string.no_tips_yet),
+            fontFamily = iniloFontFamily,
             modifier = Modifier.padding(bottom = 6.dp),
             textAlign = TextAlign.Center
         )
@@ -36,6 +38,7 @@ fun TipEmptyState() {
         Text(
             text = stringResource(R.string.check_back_later),
             modifier = Modifier.padding(bottom = 6.dp),
+            fontFamily = iniloFontFamily,
             textAlign = TextAlign.Center
         )
     }
