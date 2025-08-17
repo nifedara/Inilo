@@ -21,6 +21,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.example.inilo.R
 import com.example.inilo.ui.component.util.iniloFontFamily
 
@@ -66,12 +67,15 @@ fun SolutionsCard(modifier: Modifier,
                     text = stringResource(title),
                     fontFamily = iniloFontFamily,
                     fontWeight = FontWeight.Bold,
+                    fontSize = 18.5.sp,
                     modifier = Modifier.padding(top = 10.dp)
                 )
                 Text(
                     text = stringResource(R.string.tips_available),
                     fontFamily = iniloFontFamily,
-                    modifier = Modifier.padding(top = 8.dp)
+                    modifier = Modifier.padding(top = 8.dp),
+                    fontSize = 16.5.sp,
+                    color = Color.Black.copy(0.7f)
                 )
             }
         }

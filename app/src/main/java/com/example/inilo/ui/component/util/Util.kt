@@ -40,6 +40,6 @@ val cardIcons = listOf(
     R.drawable.water,
     R.drawable.power,
     R.drawable.health,
+    R.drawable.food,
     R.drawable.safety,
-    R.drawable.education,
 )

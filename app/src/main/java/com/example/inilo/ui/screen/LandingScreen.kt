@@ -1,10 +1,12 @@
 package com.example.inilo.ui.screen
 
 import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -39,99 +41,118 @@ import com.example.inilo.ui.component.util.toScreenType
 fun LandingScreen(
     onSolutionClick: (SolutionScreenType) -> Unit
 ) {
-    Column {
-        Column(
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center,
-            modifier = Modifier.fillMaxWidth()
-                .padding(top = 78.dp, start = 24.dp, end = 24.dp)
-        ) {
-            Text(
-                text = stringResource(R.string.welcome_to),
-                fontFamily = iniloFontFamily,
-                fontSize = 22.sp,
-                modifier = Modifier.padding(bottom = 10.dp)
-            )
-            Text(
-                text = stringResource(R.string.app_name),
-                fontFamily = iniloFontFamily,
-                fontSize = 24.sp,
-                fontWeight = FontWeight.Bold,
-                modifier = Modifier.padding(bottom = 10.dp)
-            )
-            Text(
-                text = stringResource(R.string.improvise_for_your_daily_needs),
-                fontFamily = iniloFontFamily,
-                modifier = Modifier.padding(bottom = 10.dp)
-            )
-            Text(
-                text = stringResource(R.string.basic_needs_enumerated),
-                textAlign = TextAlign.Center,
-                fontFamily = iniloFontFamily,
-                modifier = Modifier.padding(bottom = 10.dp)
-            )
-        }
-
-        Column(
-            verticalArrangement = Arrangement.Center,
-            modifier = Modifier.fillMaxWidth()
-                .padding(top = 24.dp, start = 24.dp, end = 24.dp)
-        ) {
-            Text(
-                text = stringResource(R.string.quick_actions),
-                fontSize = 24.sp,
-                fontFamily = iniloFontFamily,
-                fontWeight = FontWeight.Bold,
-                modifier = Modifier.padding(bottom = 10.dp)
-            )
-
-            Row(
-                horizontalArrangement = Arrangement.SpaceBetween,
-                modifier = Modifier.fillMaxWidth()
+    LazyColumn(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(Color(0xFFF0F0F0))
+            .padding(top = 60.dp)
+    ) {
+        item {
+            Column(
+                horizontalAlignment = Alignment.CenterHorizontally,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(top = 10.dp, start = 24.dp, end = 24.dp)
             ) {
-                QuickActionCard(
-                    name = R.string.scan_food, modifier = Modifier.weight(0.5f),
-                    color = Color(0xFFE8EBED)
+                Text(
+                    text = stringResource(R.string.welcome_to),
+                    fontFamily = iniloFontFamily,
+                    fontSize = 22.sp,
+                    modifier = Modifier.padding(bottom = 10.dp)
                 )
-                Spacer(modifier = Modifier.width(12.dp))
-                QuickActionCard(
-                    name = R.string.safety_check, modifier = Modifier.weight(0.5f),
-                    color = Color(0xFFE8EBED)
+                Text(
+                    text = stringResource(R.string.app_name),
+                    fontFamily = iniloFontFamily,
+                    fontSize = 28.sp,
+                    fontWeight = FontWeight.Bold,
+                    modifier = Modifier.padding(bottom = 10.dp)
+                )
+                Text(
+                    text = stringResource(R.string.improvise_for_your_daily_needs),
+                    fontFamily = iniloFontFamily,
+                    fontSize = 18.sp,
+                    color = Color(0xFF2A628F),
+                    modifier = Modifier.padding(bottom = 10.dp)
+                )
+                Text(
+                    text = stringResource(R.string.basic_needs_enumerated),
+                    textAlign = TextAlign.Center,
+                    fontFamily = iniloFontFamily,
+                    fontSize = 17.5.sp,
+                    color = Color(0xFF2A628F),
+                    modifier = Modifier.padding(bottom = 22.dp)
                 )
             }
-            Spacer(modifier = Modifier.padding(bottom = 10.dp))
+        }
 
-            LazyColumn {
-                stickyHeader {
-                    Card(
-                        modifier = Modifier.fillMaxWidth(),
-                        colors = CardDefaults.cardColors(containerColor = Color.White),
-                        shape = RoundedCornerShape(0)
-                    ) {
-                        Row(
-                            verticalAlignment = Alignment.CenterVertically,
-                        ) {
-                            Text(
-                                text = stringResource(R.string.explore_solutions),
-                                fontFamily = iniloFontFamily,
-                                fontSize = 24.sp,
-                                fontWeight = FontWeight.Bold,
-                                modifier = Modifier.padding(top = 20.dp, bottom = 10.dp)
-                            )
-                        }
-                    }
-                }
-                itemsIndexed(groupedSolutions) { index, solution ->
-                    SolutionsCard(
-                        modifier = Modifier.fillMaxWidth(),
-                        title = solution.stringResId,
-                        onClick = { onSolutionClick(solution.toScreenType()) },
-                        color = cardColors[index],
-                        icons = cardIcons[index]
+        stickyHeader {
+            Card(
+                modifier = Modifier.fillMaxWidth(),
+                colors = CardDefaults.cardColors(containerColor = Color(0xFFF6F5F5)),
+                shape = RoundedCornerShape(0)
+            ) {
+                Text(
+                    text = stringResource(R.string.quick_actions),
+                    fontSize = 24.sp,
+                    fontFamily = iniloFontFamily,
+                    fontWeight = FontWeight.Bold,
+                    modifier = Modifier.padding(start = 24.dp, top = 16.dp, bottom = 10.dp)
+                )
+            }
+        }
+
+        item {
+            Column(modifier = Modifier.background(Color(0xFFF6F5F5))) {
+                Row(
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(start = 24.dp, end = 24.dp, bottom = 16.dp, top = 8.dp)
+                ) {
+                    QuickActionCard(
+                        name = R.string.scan_food, modifier = Modifier.weight(0.5f),
+                        color = Color(0xFFE8EBED)
                     )
-                    if (index == groupedSolutions.lastIndex) {
-                        Spacer(modifier = Modifier.height(50.dp))
-                    }
+                    Spacer(modifier = Modifier.width(12.dp))
+                    QuickActionCard(
+                        name = R.string.safety_check, modifier = Modifier.weight(0.5f),
+                        color = Color(0xFFE8EBED)
+                    )
+                }
+            }
+        }
+
+        stickyHeader {
+            Card(
+                modifier = Modifier.fillMaxWidth(),
+                colors = CardDefaults.cardColors(containerColor = Color(0xFFF6F5F5)),
+                shape = RoundedCornerShape(0)
+            ) {
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                ) {
+                    Text(
+                        text = stringResource(R.string.explore_solutions),
+                        fontFamily = iniloFontFamily,
+                        fontSize = 24.sp,
+                        fontWeight = FontWeight.Bold,
+                        modifier = Modifier.padding(top = 20.dp, bottom = 10.dp, start = 24.dp)
+                    )
+                }
+            }
+        }
+
+        itemsIndexed(groupedSolutions) { index, solution ->
+            Column(modifier = Modifier.background(Color(0xFFF6F5F5))) {
+                SolutionsCard(
+                    modifier = Modifier.fillMaxWidth().padding(horizontal = 24.dp),
+                    title = solution.stringResId,
+                    onClick = { onSolutionClick(solution.toScreenType()) },
+                    color = cardColors[index],
+                    icons = cardIcons[index]
+                )
+                if (index == groupedSolutions.lastIndex) {
+                    Spacer(modifier = Modifier.height(50.dp))
                 }
             }
         }
