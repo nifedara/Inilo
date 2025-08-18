@@ -3,7 +3,7 @@ import com.example.inilo.R
 
 enum class Solutions(val stringResId: Int) {
     Education(R.string.education_and_learning),
-    Water(R.string.clean_water_soltions),
+    Water(R.string.clean_water_solutions),
     Power(R.string.power_alternatives),
     HealthAndSanitation(R.string.health_and_sanitation),
     Food(R.string.food_solutions),

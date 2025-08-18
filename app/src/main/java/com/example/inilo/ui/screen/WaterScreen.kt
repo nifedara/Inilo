@@ -6,9 +6,8 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.outlined.FavoriteBorder
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
@@ -17,6 +16,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -24,6 +24,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.inilo.R
 import com.example.inilo.ui.component.IniloScaffold
+import com.example.inilo.ui.component.TipEmptyState
 import com.example.inilo.ui.component.util.iniloFontFamily
 
 @Composable
@@ -35,50 +36,62 @@ fun WaterScreen(
         pageTitle = "",
         appBarColor = Color(0xFFDBE6E3)
     ) {
-        Column(
-            modifier = Modifier.background(Color(0xFFDBE6E3))
-                .fillMaxWidth()
-                .padding(top = 0.dp, start = 24.dp, end = 24.dp),
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center
-        ){
-            Card(
-                shape = RoundedCornerShape(50.dp),
-                colors = CardDefaults.cardColors(containerColor = Color.White),
-                modifier = Modifier.padding(bottom = 10.dp)
+        Column {
+            Column(
+                modifier = Modifier.background(Color(0xFFDBE6E3))
+                    .fillMaxWidth()
+                    .padding(top = 0.dp, start = 24.dp, end = 24.dp),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.Center
             ) {
-                Row(
-                    horizontalArrangement = Arrangement.Center,
-                    verticalAlignment = Alignment.CenterVertically,
-                    modifier = Modifier.padding(20.dp)
+                Card(
+                    shape = RoundedCornerShape(50.dp),
+                    colors = CardDefaults.cardColors(containerColor = Color.White),
+                    modifier = Modifier.padding(bottom = 10.dp)
                 ) {
-                    Icon(
-                        imageVector = Icons.Outlined.FavoriteBorder,
-                        contentDescription = stringResource(R.string.quick_action_card_icon),
-                        modifier = Modifier.padding(8.dp)
-                    )
+                    Row(
+                        horizontalArrangement = Arrangement.Center,
+                        verticalAlignment = Alignment.CenterVertically,
+                        modifier = Modifier.padding(20.dp)
+                    ) {
+                        Icon(
+                            painter = painterResource(R.drawable.water),
+                            contentDescription = stringResource(R.string.quick_action_card_icon),
+                            modifier = Modifier.padding(8.dp).size(30.dp)
+                        )
+                    }
                 }
+
+                Text(
+                    text = stringResource(R.string.clean_water_solutions),
+                    modifier = Modifier.padding(bottom = 4.dp),
+                    fontWeight = FontWeight.Bold,
+                    fontFamily = iniloFontFamily,
+                    fontSize = 24.sp
+                )
+                Text(
+                    text = stringResource(R.string.water_purification_methods),
+                    modifier = Modifier.padding(bottom = 6.dp),
+                    fontFamily = iniloFontFamily,
+                    textAlign = TextAlign.Center
+                )
+                Text(
+                    text = stringResource(R.string.tips_available),
+                    modifier = Modifier.padding(bottom = 16.dp),
+                    fontFamily = iniloFontFamily,
+                    textAlign = TextAlign.Center
+                )
             }
 
-            Text (
-                text = stringResource(R.string.clean_water_soltions),
-                modifier = Modifier.padding(bottom = 4.dp),
-                fontWeight = FontWeight.Bold,
-                fontFamily = iniloFontFamily,
-                fontSize = 24.sp
-            )
-            Text (
-                text = stringResource(R.string.water_purification_methods),
-                modifier = Modifier.padding(bottom = 6.dp),
-                fontFamily = iniloFontFamily,
-                textAlign = TextAlign.Center
-            )
-            Text (
-                text = stringResource(R.string.tips_available),
-                modifier = Modifier.padding(bottom = 16.dp),
-                fontFamily = iniloFontFamily,
-                textAlign = TextAlign.Center
-            )
+            Column(
+                modifier = Modifier
+                    .padding(top = 180.dp, start = 24.dp, end = 24.dp)
+                    .fillMaxWidth(),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.Center
+            ) {
+                TipEmptyState()
+            }
         }
     }
 }

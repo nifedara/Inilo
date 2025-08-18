@@ -8,14 +8,14 @@
     <string name="scan_food">Scan Food</string>
     <string name="safety_check">Safety Check</string>
     <string name="explore_solutions">Explore Solutions</string>
-    <string name="tips_available">tips available</string>
+    <string name="tips_available">0 tips available</string>
     <string name="education_and_learning"><![CDATA[Education & Learning]]></string>
-    <string name="clean_water_soltions">Clean Water Solutions</string>
+    <string name="clean_water_solutions">Clean Water Solutions</string>
     <string name="power_alternatives">Power Alternatives</string>
     <string name="health_and_sanitation"><![CDATA[Health & Sanitation]]></string>
     <string name="food_solutions">Food Solutions</string>
     <string name="safety_and_security"><![CDATA[Safety & Security]]></string>
-    <string name="smart_learning_techiques_and_resources">Smart learning techniques and educational resources</string>
+    <string name="smart_learning_techniques_and_resources">Smart learning techniques and educational resources</string>
     <string name="water_purification_methods">Water purification and safe drinking methods</string>
     <string name="hygiene_practices_and_sanitation_solutions">Hygiene practices and sanitation solutions</string>
     <string name="personal_safety_and_security_measures">Personal safety and security measures</string>
