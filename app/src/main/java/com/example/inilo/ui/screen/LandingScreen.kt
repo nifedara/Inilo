@@ -31,6 +31,7 @@ import com.example.inilo.ui.component.QuickActionCard
 import com.example.inilo.ui.component.SolutionScreenType
 import com.example.inilo.ui.component.SolutionsCard
 import com.example.inilo.ui.component.util.cardColors
+import com.example.inilo.ui.component.util.cardIconSizes
 import com.example.inilo.ui.component.util.cardIcons
 import com.example.inilo.ui.component.util.groupedSolutions
 import com.example.inilo.ui.component.util.iniloFontFamily
@@ -57,19 +58,21 @@ fun LandingScreen(
                 Text(
                     text = stringResource(R.string.welcome_to),
                     fontFamily = iniloFontFamily,
-                    fontSize = 22.sp,
+                    fontWeight = FontWeight.Light,
+                    fontSize = 20.sp,
                     modifier = Modifier.padding(bottom = 10.dp)
                 )
                 Text(
                     text = stringResource(R.string.app_name),
                     fontFamily = iniloFontFamily,
                     fontSize = 28.sp,
-                    fontWeight = FontWeight.Bold,
+                    fontWeight = FontWeight.Medium,
                     modifier = Modifier.padding(bottom = 10.dp)
                 )
                 Text(
                     text = stringResource(R.string.improvise_for_your_daily_needs),
                     fontFamily = iniloFontFamily,
+                    fontWeight = FontWeight.Light,
                     fontSize = 18.sp,
                     color = Color(0xFF2A628F),
                     modifier = Modifier.padding(bottom = 10.dp)
@@ -78,7 +81,8 @@ fun LandingScreen(
                     text = stringResource(R.string.basic_needs_enumerated),
                     textAlign = TextAlign.Center,
                     fontFamily = iniloFontFamily,
-                    fontSize = 17.5.sp,
+                    fontWeight = FontWeight.Light,
+                    fontSize = 16.sp,
                     color = Color(0xFF2A628F),
                     modifier = Modifier.padding(bottom = 22.dp)
                 )
@@ -93,9 +97,9 @@ fun LandingScreen(
             ) {
                 Text(
                     text = stringResource(R.string.quick_actions),
-                    fontSize = 24.sp,
+                    fontSize = 22.5.sp,
                     fontFamily = iniloFontFamily,
-                    fontWeight = FontWeight.Bold,
+                    fontWeight = FontWeight.Medium,
                     modifier = Modifier.padding(start = 24.dp, top = 16.dp, bottom = 10.dp)
                 )
             }
@@ -134,8 +138,8 @@ fun LandingScreen(
                     Text(
                         text = stringResource(R.string.explore_solutions),
                         fontFamily = iniloFontFamily,
-                        fontSize = 24.sp,
-                        fontWeight = FontWeight.Bold,
+                        fontSize = 22.5.sp,
+                        fontWeight = FontWeight.Medium,
                         modifier = Modifier.padding(top = 20.dp, bottom = 10.dp, start = 24.dp)
                     )
                 }
@@ -149,7 +153,8 @@ fun LandingScreen(
                     title = solution.stringResId,
                     onClick = { onSolutionClick(solution.toScreenType()) },
                     color = cardColors[index],
-                    icons = cardIcons[index]
+                    icons = cardIcons[index],
+                    iconSize = cardIconSizes[index]
                 )
                 if (index == groupedSolutions.lastIndex) {
                     Spacer(modifier = Modifier.height(50.dp))

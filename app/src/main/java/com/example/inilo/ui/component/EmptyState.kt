@@ -35,7 +35,7 @@ fun TipEmptyState() {
             text = stringResource(R.string.no_tips_yet),
             fontFamily = iniloFontFamily,
             modifier = Modifier.padding(bottom = 6.dp),
-            fontWeight = FontWeight.Bold,
+            fontWeight = FontWeight.Normal,
             fontSize = 18.sp,
             textAlign = TextAlign.Center
         )
@@ -44,6 +44,7 @@ fun TipEmptyState() {
             text = stringResource(R.string.check_back_later),
             modifier = Modifier.padding(bottom = 6.dp),
             fontFamily = iniloFontFamily,
+            fontWeight = FontWeight.Light,
             fontSize = 16.sp,
             textAlign = TextAlign.Center
         )

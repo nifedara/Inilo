@@ -65,20 +65,24 @@ fun HealthAndSanitationScreen(
                 Text(
                     text = stringResource(R.string.health_and_sanitation),
                     modifier = Modifier.padding(bottom = 4.dp),
-                    fontWeight = FontWeight.Bold,
+                    fontWeight = FontWeight.Medium,
                     fontFamily = iniloFontFamily,
-                    fontSize = 24.sp
+                    fontSize = 22.sp
                 )
                 Text(
                     text = stringResource(R.string.hygiene_practices_and_sanitation_solutions),
                     modifier = Modifier.padding(bottom = 6.dp),
                     fontFamily = iniloFontFamily,
+                    fontWeight = FontWeight.Light,
+                    fontSize = 16.sp,
                     textAlign = TextAlign.Center
                 )
                 Text(
                     text = stringResource(R.string.tips_available),
                     modifier = Modifier.padding(bottom = 16.dp),
                     fontFamily = iniloFontFamily,
+                    fontWeight = FontWeight.Light,
+                    fontSize = 14.sp,
                     textAlign = TextAlign.Center
                 )
             }

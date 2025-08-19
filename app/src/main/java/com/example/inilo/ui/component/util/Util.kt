@@ -3,18 +3,21 @@ package com.example.inilo.ui.component.util
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
-import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.dp
 import com.example.inilo.R
 import com.example.inilo.ui.component.Solutions
 
 val iniloFontFamily = FontFamily(
-    Font(R.font.libertinusserif_regular, FontWeight.Normal),
-    Font(R.font.libertinusserif_semibold, FontWeight.SemiBold),
-    Font(R.font.libertinus_serif_bold, FontWeight.Bold),
-    Font(R.font.libertinusserif_italic, FontWeight.Normal, FontStyle.Italic),
-    Font(R.font.libertinus_serif_semi_bold_italic, FontWeight.SemiBold, FontStyle.Italic),
-    Font(R.font.libertinus_serif_bold_italic, FontWeight.Bold, FontStyle.Italic),
+    Font(R.font.lexend_thin, FontWeight.Thin),
+    Font(R.font.lexend_extra_light, FontWeight.ExtraLight),
+    Font(R.font.lexend_light, FontWeight.Light),
+    Font(R.font.lexend_regular, FontWeight.Normal),
+    Font(R.font.lexend_medium, FontWeight.Medium),
+    Font(R.font.lexend_bold, FontWeight.Bold),
+    Font(R.font.lexend_semi_bold, FontWeight.SemiBold),
+    Font(R.font.lexend_extra_bold, FontWeight.ExtraBold),
+    Font(R.font.lexend_black, FontWeight.Black),
 )
 
 val groupedSolutions = listOf (
@@ -42,4 +45,13 @@ val cardIcons = listOf(
     R.drawable.health,
     R.drawable.food,
     R.drawable.safety,
+)
+
+val cardIconSizes = listOf(
+    26.dp,
+    25.dp,
+    29.dp,
+    24.dp,
+    24.dp,
+    25.dp,
 )

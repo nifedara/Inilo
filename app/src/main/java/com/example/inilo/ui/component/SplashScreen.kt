@@ -61,8 +61,8 @@ fun IniloSplashAnimation(onAnimationEnd: () -> Unit) {
             ) {
                 Text(
                     text = letter,
-                    fontSize = 64.sp,
-                    fontWeight = FontWeight.Bold,
+                    fontSize = 60.sp,
+                    fontWeight = FontWeight.Medium,
                     fontFamily = iniloFontFamily,
                     color = colors[index]
                 )

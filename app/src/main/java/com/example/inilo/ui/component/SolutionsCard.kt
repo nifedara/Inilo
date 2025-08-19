@@ -20,6 +20,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.inilo.R
@@ -30,7 +31,9 @@ fun SolutionsCard(modifier: Modifier,
                   title: Int,
                   onClick: () -> Unit,
                   color: Color,
-                  icons: Int) {
+                  icons: Int,
+                  iconSize: Dp = 32.dp
+) {
     Card(
         shape = RoundedCornerShape(16.dp),
         modifier = modifier.padding(bottom = 16.dp)
@@ -58,7 +61,7 @@ fun SolutionsCard(modifier: Modifier,
                     ) {
                         Icon(
                             painter = painterResource(icons),
-                            modifier = Modifier.size(32.dp),
+                            modifier = Modifier.size(iconSize),
                             contentDescription = stringResource(R.string.quick_action_card_icon)
                         )
                     }
@@ -66,15 +69,16 @@ fun SolutionsCard(modifier: Modifier,
                 Text(
                     text = stringResource(title),
                     fontFamily = iniloFontFamily,
-                    fontWeight = FontWeight.Bold,
-                    fontSize = 18.5.sp,
+                    fontWeight = FontWeight.Medium,
+                    fontSize = 18.sp,
                     modifier = Modifier.padding(top = 10.dp)
                 )
                 Text(
                     text = stringResource(R.string.tips_available),
                     fontFamily = iniloFontFamily,
+                    fontWeight = FontWeight.Light,
                     modifier = Modifier.padding(top = 8.dp),
-                    fontSize = 16.5.sp,
+                    fontSize = 16.sp,
                     color = Color.Black.copy(0.7f)
                 )
             }
