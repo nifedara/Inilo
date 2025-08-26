@@ -34,11 +34,11 @@ fun SafetyAndSecurityScreen(
     IniloScaffold(
         onBack = { onBack() },
         pageTitle = "",
-        appBarColor = Color(0xFFBD90DF)
+        appBarColor = Color(0xFF9168f5)
     ) {
         Column {
             Column(
-                modifier = Modifier.background(Color(0xFFBD90DF))
+                modifier = Modifier.background(Color(0xFF9168f5))
                     .fillMaxWidth()
                     .padding(top = 0.dp, start = 24.dp, end = 24.dp),
                 horizontalAlignment = Alignment.CenterHorizontally,

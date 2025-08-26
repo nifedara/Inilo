@@ -5,6 +5,7 @@ import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.scaleIn
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -28,13 +29,13 @@ import kotlinx.coroutines.delay
 
 @Composable
 fun IniloSplashAnimation(onAnimationEnd: () -> Unit) {
-    val letters = listOf("I", "N", "I", "L", "O")
+    val letters = listOf("Ì", "n", "ì", "l", "ò")
     val colors = listOf(
-        Color(0xFFAFBC88),
-        Color(0xFF40531B),
-        Color(0xFF7AA095),
-        Color(0xFFFFC09F),
-        Color(0xFF618B4A),
+        Color(0xFF3b1d38),
+        Color(0xFFff8ce9),
+        Color(0xFF9168f5),
+        Color(0xFFff7865),
+        Color(0xFFfdce02),
     )
 
     var visibleCount by remember { mutableIntStateOf(0) }
@@ -49,7 +50,7 @@ fun IniloSplashAnimation(onAnimationEnd: () -> Unit) {
     }
 
     Row(
-        modifier = Modifier.fillMaxSize(),
+        modifier = Modifier.fillMaxSize().background(Color(0xFFfbf6ef)),
         horizontalArrangement = Arrangement.Center,
         verticalAlignment = Alignment.CenterVertically
     ) {

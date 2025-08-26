@@ -34,11 +34,11 @@ fun EducationScreen(
     IniloScaffold(
         onBack = { onBack() },
         pageTitle = "",
-        appBarColor = Color(0xFFCAD3B1)
+        appBarColor = Color(0xFF3b1d38)
     ) {
         Column {
             Column(
-                modifier = Modifier.background(Color(0xFFCAD3B1))
+                modifier = Modifier.background(Color(0xFF3b1d38))
                     .fillMaxWidth()
                     .padding(top = 0.dp, start = 24.dp, end = 24.dp),
                 horizontalAlignment = Alignment.CenterHorizontally,

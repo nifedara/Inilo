@@ -16,6 +16,7 @@ import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.Divider
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -45,7 +46,7 @@ fun LandingScreen(
     LazyColumn(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color(0xFFF0F0F0))
+            .background(Color(0xFFfbf6ef))
             .padding(top = 60.dp)
     ) {
         item {
@@ -74,7 +75,7 @@ fun LandingScreen(
                     fontFamily = iniloFontFamily,
                     fontWeight = FontWeight.Light,
                     fontSize = 18.sp,
-                    color = Color(0xFF2A628F),
+                    color = Color(0xFF3b1d38),
                     modifier = Modifier.padding(bottom = 10.dp)
                 )
                 Text(
@@ -83,16 +84,21 @@ fun LandingScreen(
                     fontFamily = iniloFontFamily,
                     fontWeight = FontWeight.Light,
                     fontSize = 16.sp,
-                    color = Color(0xFF2A628F),
+                    color = Color(0xFF3b1d38),
                     modifier = Modifier.padding(bottom = 22.dp)
                 )
             }
         }
 
         stickyHeader {
+            Divider(
+                color = Color(0xFFF0F0F0),
+                thickness = 10.dp
+            )
+
             Card(
                 modifier = Modifier.fillMaxWidth(),
-                colors = CardDefaults.cardColors(containerColor = Color(0xFFF6F5F5)),
+                colors = CardDefaults.cardColors(containerColor = Color(0xFFfbf6ef)),
                 shape = RoundedCornerShape(0)
             ) {
                 Text(
@@ -106,7 +112,7 @@ fun LandingScreen(
         }
 
         item {
-            Column(modifier = Modifier.background(Color(0xFFF6F5F5))) {
+            Column(modifier = Modifier.background(Color(0xFFfbf6ef))) {
                 Row(
                     horizontalArrangement = Arrangement.SpaceBetween,
                     modifier = Modifier
@@ -114,13 +120,15 @@ fun LandingScreen(
                         .padding(start = 24.dp, end = 24.dp, bottom = 16.dp, top = 8.dp)
                 ) {
                     QuickActionCard(
-                        name = R.string.scan_food, modifier = Modifier.weight(0.5f),
-                        color = Color(0xFFE8EBED)
+                        name = R.string.practice_cards, modifier = Modifier.weight(0.5f),
+                        color = Color(0xFF3b1d38),
+                        icon = R.drawable.quiz
                     )
                     Spacer(modifier = Modifier.width(12.dp))
                     QuickActionCard(
                         name = R.string.safety_check, modifier = Modifier.weight(0.5f),
-                        color = Color(0xFFE8EBED)
+                        color = Color(0xFF3b1d38),
+                        icon = R.drawable.safety_check
                     )
                 }
             }
@@ -129,7 +137,7 @@ fun LandingScreen(
         stickyHeader {
             Card(
                 modifier = Modifier.fillMaxWidth(),
-                colors = CardDefaults.cardColors(containerColor = Color(0xFFF6F5F5)),
+                colors = CardDefaults.cardColors(containerColor = Color(0xFFfbf6ef)),
                 shape = RoundedCornerShape(0)
             ) {
                 Row(
@@ -147,14 +155,15 @@ fun LandingScreen(
         }
 
         itemsIndexed(groupedSolutions) { index, solution ->
-            Column(modifier = Modifier.background(Color(0xFFF6F5F5))) {
+            Column(modifier = Modifier.background(Color(0xFFfbf6ef))) {
                 SolutionsCard(
                     modifier = Modifier.fillMaxWidth().padding(horizontal = 24.dp),
                     title = solution.stringResId,
                     onClick = { onSolutionClick(solution.toScreenType()) },
                     color = cardColors[index],
                     icons = cardIcons[index],
-                    iconSize = cardIconSizes[index]
+                    iconSize = cardIconSizes[index],
+                    iconColor = Color(0xFFfbf6ef)
                 )
                 if (index == groupedSolutions.lastIndex) {
                     Spacer(modifier = Modifier.height(50.dp))

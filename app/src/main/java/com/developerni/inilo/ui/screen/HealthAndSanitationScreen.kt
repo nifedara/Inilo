@@ -34,11 +34,11 @@ fun HealthAndSanitationScreen(
     IniloScaffold(
         onBack = { onBack() },
         pageTitle = "",
-        appBarColor = Color(0xFFD7D9CE)
+        appBarColor = Color(0xFFff7865)
     ) {
         Column {
             Column(
-                modifier = Modifier.background(Color(0xFFD7D9CE))
+                modifier = Modifier.background(Color(0xFFff7865))
                     .fillMaxWidth()
                     .padding(top = 0.dp, start = 24.dp, end = 24.dp),
                 horizontalAlignment = Alignment.CenterHorizontally,

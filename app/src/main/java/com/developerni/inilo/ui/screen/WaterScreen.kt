@@ -34,11 +34,11 @@ fun WaterScreen(
     IniloScaffold(
         onBack = { onBack() },
         pageTitle = "",
-        appBarColor = Color(0xFFDBE6E3)
+        appBarColor = Color(0xFF02bc59)
     ) {
         Column {
             Column(
-                modifier = Modifier.background(Color(0xFFDBE6E3))
+                modifier = Modifier.background(Color(0xFF02bc59))
                     .fillMaxWidth()
                     .padding(top = 0.dp, start = 24.dp, end = 24.dp),
                 horizontalAlignment = Alignment.CenterHorizontally,

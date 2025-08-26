@@ -23,7 +23,7 @@ fun IniloScaffold(
     pageTitle: String? = null,
     appBar: (@Composable () -> Unit)? = null,
     ignorePadding: Boolean = false,
-    background: Color? = null,
+    background: Color = Color(0xFFfbf6ef),
     appBarColor: Color? = null,
     content: (@Composable (PaddingValues) -> Unit),
 ) {
@@ -50,7 +50,7 @@ fun IniloScaffold(
                 modifier = Modifier.background(appBarColor ?: Color.Unspecified)
             )
         },
-        containerColor = background ?: MaterialTheme.colorScheme.background
+        containerColor = background
     ) { insets ->
         if (ignorePadding) {
             content(insets)

@@ -1,5 +1,6 @@
 package com.developerni.inilo.ui.component
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -32,13 +33,15 @@ fun SolutionsCard(modifier: Modifier,
                   onClick: () -> Unit,
                   color: Color,
                   icons: Int,
-                  iconSize: Dp = 32.dp
+                  iconSize: Dp = 32.dp,
+                  iconColor: Color
 ) {
     Card(
         shape = RoundedCornerShape(16.dp),
         modifier = modifier.padding(bottom = 16.dp)
             .clickable { onClick() },
-        colors = CardDefaults.cardColors(containerColor = color),
+        colors = CardDefaults.cardColors(containerColor = Color(0xFFfbf6ef)),
+        border = BorderStroke(2.dp, color)
     ) {
         Row(
             modifier = Modifier.fillMaxWidth(),
@@ -52,7 +55,7 @@ fun SolutionsCard(modifier: Modifier,
 
                 Card(
                     shape = RoundedCornerShape(50.dp),
-                    colors = CardDefaults.cardColors(containerColor = Color.White)
+                    colors = CardDefaults.cardColors(containerColor = color)
                 ) {
                     Row(
                         horizontalArrangement = Arrangement.Center,
@@ -62,7 +65,8 @@ fun SolutionsCard(modifier: Modifier,
                         Icon(
                             painter = painterResource(icons),
                             modifier = Modifier.size(iconSize),
-                            contentDescription = stringResource(R.string.quick_action_card_icon)
+                            contentDescription = stringResource(R.string.quick_action_card_icon),
+                            tint = iconColor
                         )
                     }
                 }
