@@ -37,11 +37,13 @@ import com.developerni.inilo.ui.component.util.cardIcons
 import com.developerni.inilo.ui.component.util.groupedSolutions
 import com.developerni.inilo.ui.component.util.iniloFontFamily
 import com.developerni.inilo.ui.component.util.toScreenType
+import com.developerni.inilo.ui.viewModel.LoginStateViewModel
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun LandingScreen(
-    onSolutionClick: (SolutionScreenType) -> Unit
+    onSolutionClick: (SolutionScreenType) -> Unit,
+    loginStateViewModel: LoginStateViewModel
 ) {
     LazyColumn(
         modifier = Modifier
@@ -92,7 +94,7 @@ fun LandingScreen(
 
         stickyHeader {
             Divider(
-                color = Color(0xFFF0F0F0),
+                color = Color(0xffede9e3),
                 thickness = 10.dp
             )
 

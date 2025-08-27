@@ -1,5 +1,6 @@
 package com.developerni.inilo.ui.component
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -24,10 +25,13 @@ import com.developerni.inilo.R
 import com.developerni.inilo.ui.component.util.iniloFontFamily
 
 @Composable
-fun TipCard() {
+fun TipCard(
+    onClick: () -> Unit
+) {
     ElevatedCard(
         shape = RoundedCornerShape(16.dp),
         elevation = CardDefaults.elevatedCardElevation(defaultElevation = 12.dp),
+        modifier = Modifier.clickable { onClick() }
     ) {
         Column(
             modifier = Modifier.padding(18.dp)

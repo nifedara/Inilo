@@ -22,9 +22,12 @@ fun IniloScaffold(
     onBack: (() -> Unit)? = null,
     pageTitle: String? = null,
     appBar: (@Composable () -> Unit)? = null,
+    bottomBar: (@Composable () -> Unit)? = null,
     ignorePadding: Boolean = false,
     background: Color = Color(0xFFfbf6ef),
     appBarColor: Color? = null,
+    backButtonColor: Color = Color.White,
+    backButtonIconColor: Color? = null,
     content: (@Composable (PaddingValues) -> Unit),
 ) {
     Scaffold(
@@ -47,10 +50,18 @@ fun IniloScaffold(
                         )
                     } },
                 appBarColor = appBarColor,
+                backButtonColor = backButtonColor,
+                backButtonIconColor = backButtonIconColor,
                 modifier = Modifier.background(appBarColor ?: Color.Unspecified)
             )
         },
-        containerColor = background
+        containerColor = background,
+        bottomBar = {
+            if (bottomBar != null) {
+                bottomBar()
+                return@Scaffold
+            }
+        }
     ) { insets ->
         if (ignorePadding) {
             content(insets)
