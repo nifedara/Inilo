@@ -26,6 +26,8 @@ fun TopBar(
     modifier: Modifier = Modifier,
     scrollBehavior: TopAppBarScrollBehavior? = null,
     onBackPressed: () -> Unit,
+    backButtonColor: Color = Color.White,
+    backButtonIconColor: Color? = Color.White,
     title: @Composable () -> Unit,
     actions: @Composable RowScope.() -> Unit = {},
     appBarColor: Color? = null
@@ -48,12 +50,12 @@ fun TopBar(
             navigationIcon = {
                 IconButton(
                     onClick = onBackPressed,
-                    colors = IconButtonDefaults.iconButtonColors(containerColor = Color.White)
+                    colors = IconButtonDefaults.iconButtonColors(containerColor = backButtonColor)
                 ) {
                     Icon(
                         imageVector = Icons.Default.KeyboardArrowLeft,
                         contentDescription = "",
-                        tint = MaterialTheme.colorScheme.secondary,
+                        tint = backButtonIconColor ?: MaterialTheme.colorScheme.secondary,
                         modifier = Modifier.size(28.dp)
                     )
                 }

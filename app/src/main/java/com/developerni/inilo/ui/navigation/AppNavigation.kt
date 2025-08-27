@@ -11,13 +11,18 @@ import com.developerni.inilo.ui.screen.EducationScreen
 import com.developerni.inilo.ui.screen.FoodScreen
 import com.developerni.inilo.ui.screen.HealthAndSanitationScreen
 import com.developerni.inilo.ui.screen.LandingScreen
+import com.developerni.inilo.ui.screen.LoginRequiredScreen
 import com.developerni.inilo.ui.screen.PowerScreen
 import com.developerni.inilo.ui.screen.SafetyAndSecurityScreen
+import com.developerni.inilo.ui.screen.SafetyAndSecurityScreenNavigation
 import com.developerni.inilo.ui.screen.WaterScreen
+import com.developerni.inilo.ui.viewModel.LoginStateViewModel
 
 @OptIn(ExperimentalSharedTransitionApi::class)
 @Composable
-fun AppNavigation() {
+fun AppNavigation(
+    viewModel: LoginStateViewModel
+) {
     val navController = rememberNavController()
 
     SharedTransitionLayout {
@@ -53,7 +58,8 @@ fun AppNavigation() {
                                 navController.navigate(Navigate.Screen.SafetyAndSecurityScreen.route)
                             }
                         }
-                    }
+                    },
+                    loginStateViewModel = viewModel
                 )
             }
 
@@ -89,7 +95,24 @@ fun AppNavigation() {
 
             composable(route = Navigate.Screen.SafetyAndSecurityScreen.route) {
                 SafetyAndSecurityScreen(
-                    onBack = { navController.popBackStack() }
+                    loginStateViewModel = viewModel,
+                    onRoute = {
+                        when (it) {
+                            SafetyAndSecurityScreenNavigation.Back -> {
+                                navController.popBackStack()
+                            }
+
+                            SafetyAndSecurityScreenNavigation.LoginRequired -> {
+                                navController.navigate(Navigate.Screen.LoginRequiredScreen.route)
+                            }
+                        }
+                    }
+                )
+            }
+
+            composable(route = Navigate.Screen.LoginRequiredScreen.route) {
+                LoginRequiredScreen(
+                    onRoute = { navController.popBackStack() }
                 )
             }
         }

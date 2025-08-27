@@ -14,9 +14,11 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.developerni.inilo.ui.component.IniloSplashAnimation
-import com.developerni.inilo.ui.navigation.AppNavigation
+import com.developerni.inilo.ui.screen.EntryScreen
 import com.developerni.inilo.ui.theme.IniloTheme
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,7 +39,8 @@ class MainActivity : ComponentActivity() {
                             keepSplashScreen = false
                         }
                     } else {
-                        AppNavigation()
+                        EntryScreen()
+                        //AppNavigation()
                     }
                 }
             }

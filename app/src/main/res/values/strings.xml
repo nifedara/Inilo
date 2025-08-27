@@ -22,4 +22,7 @@
     <string name="easy">Easy</string>
     <string name="no_tips_yet">No tips yet</string>
     <string name="check_back_later">Check back later!</string>
+    <string name="access_more_tips_free">Access more tips for free</string>
+    <string name="sign_up">Sign me up!</string>
+    <string name="sign_in">Sign in</string>
 </resources>

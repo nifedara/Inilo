@@ -21,3 +21,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "Inilo"
 include(":app")
+include(":data")
