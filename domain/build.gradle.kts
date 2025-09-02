@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace = "com.inilo.data"
+    namespace = "com.inilo.domain"
     compileSdk = 36
 
     defaultConfig {
@@ -39,25 +39,12 @@ dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
-    implementation(libs.androidx.datastore.core)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 
+    api(project(":data"))
+
     implementation(libs.hilt.library)
     kapt(libs.hilt.compiler)
-
-    api(libs.datastore)
-
-    api(libs.retrofit)
-    api(libs.moshi)
-    api(libs.retrofit.converter.moshi)
-    implementation(libs.gson)
-
-    implementation(platform(libs.firebase.bom))
-    implementation(libs.firebase.analytics)
-    implementation(libs.google.firebase.analytics)
-    implementation(libs.firebase.auth)
-
-    implementation(libs.google.firebase.auth)
 }

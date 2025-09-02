@@ -49,7 +49,7 @@ fun LoginRequiredScreen(
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Button(
-                    onClick = {},
+                    onClick = { onRoute(LoginRequiredScreenNavigation.SignUp) },
                     shape = RoundedCornerShape(16.dp),
                     modifier = Modifier.fillMaxWidth(),
                     colors = ButtonDefaults.buttonColors(Color(0xFF9168f5), contentColor = Color(0xFFfbf6ef))
@@ -66,7 +66,7 @@ fun LoginRequiredScreen(
                 Spacer(modifier = Modifier.height(6.dp))
 
                 OutlinedButton (
-                    onClick = {},
+                    onClick = {onRoute(LoginRequiredScreenNavigation.SignIn)  },
                     shape = RoundedCornerShape(16.dp),
                     modifier = Modifier.fillMaxWidth(),
                     colors = ButtonDefaults.outlinedButtonColors(contentColor = Color(0xFF9168f5))

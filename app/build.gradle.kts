@@ -85,7 +85,8 @@ dependencies {
     kapt(libs.hilt.compiler)
     kapt(libs.androidx.hilt.compiler)
 
-    api(project(":data"))
+    implementation(project(":data"))
+    implementation(project(":domain"))
 
     implementation(platform(libs.firebase.bom))
     implementation(libs.firebase.analytics)

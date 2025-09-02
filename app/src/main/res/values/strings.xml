@@ -26,4 +26,7 @@
     <string name="sign_up">Sign me up!</string>
     <string name="sign_in">Sign in</string>
     <string name="tips_to_improvise_for_necessities">Tips to improvise for your necessities</string>
+    <string name="enter_your_email">Enter your email</string>
+    <string name="enter_a_password">Enter a password</string>
+    <string name="complete">Complete</string>
 </resources>
