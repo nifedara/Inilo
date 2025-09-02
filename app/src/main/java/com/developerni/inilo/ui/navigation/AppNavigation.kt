@@ -16,6 +16,8 @@ import com.developerni.inilo.ui.screen.LoginRequiredScreenNavigation
 import com.developerni.inilo.ui.screen.PowerScreen
 import com.developerni.inilo.ui.screen.SafetyAndSecurityScreen
 import com.developerni.inilo.ui.screen.SafetyAndSecurityScreenNavigation
+import com.developerni.inilo.ui.screen.SignInScreen
+import com.developerni.inilo.ui.screen.SignInScreenNavigation
 import com.developerni.inilo.ui.screen.SignUpScreen
 import com.developerni.inilo.ui.screen.SignUpScreenNavigation
 import com.developerni.inilo.ui.screen.WaterScreen
@@ -118,7 +120,7 @@ fun AppNavigation(
                     onRoute = {
                         when (it) {
                             LoginRequiredScreenNavigation.Back -> { navController.popBackStack() }
-                            LoginRequiredScreenNavigation.SignIn -> { }
+                            LoginRequiredScreenNavigation.SignIn -> { navController.navigate(Navigate.Screen.SignInScreen.route) }
                             LoginRequiredScreenNavigation.SignUp -> { navController.navigate(Navigate.Screen.SignUpScreen.route) }
                         }
                     }
@@ -131,6 +133,17 @@ fun AppNavigation(
                         when (it) {
                             SignUpScreenNavigation.Back -> { navController.popBackStack() }
                             SignUpScreenNavigation.SignUp -> {}
+                        }
+                    }
+                )
+            }
+
+            composable(route = Navigate.Screen.SignInScreen.route) {
+                SignInScreen(
+                    onRoute = {
+                        when (it) {
+                            SignInScreenNavigation.Back -> { navController.popBackStack() }
+                            SignInScreenNavigation.SignIn -> {}
                         }
                     }
                 )

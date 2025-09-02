@@ -57,6 +57,7 @@ retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit
 retrofit_converter_moshi = { module = "com.squareup.retrofit2:converter-moshi", version.ref = "retrofit"}
 moshi = { module = "com.squareup.moshi:moshi-kotlin", version.ref = "moshi"}
 gson = { module = "com.google.code.gson:gson", version.ref = "gson"}
+compose-material-iconsext = { module = "androidx.compose.material:material-icons-extended" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

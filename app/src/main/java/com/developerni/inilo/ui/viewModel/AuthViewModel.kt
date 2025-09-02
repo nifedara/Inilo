@@ -23,9 +23,10 @@ class AuthViewModel @Inject constructor(
 
 
     fun signIn(authRequest: FirebaseAuthRequest) {
+        _loading.value = true
         viewModelScope.launch {
-            signInUseCase.invoke(authRequest).collect { firebaseToken ->
 
+            signInUseCase.invoke(authRequest).collect { firebaseToken ->
                 _loading.value = false
                 Log.v("token", firebaseToken.token)
             }
@@ -33,9 +34,10 @@ class AuthViewModel @Inject constructor(
     }
 
     fun signUp(authRequest: FirebaseAuthRequest) {
+        _loading.value = true
         viewModelScope.launch {
-            signUpUseCase.invoke(authRequest).collect { firebaseToken ->
 
+            signUpUseCase.invoke(authRequest).collect { firebaseToken ->
                 _loading.value = false
                 Log.v("token", firebaseToken.token)
             }
