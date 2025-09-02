@@ -5,7 +5,7 @@
     <string name="welcome_to">Welcome to</string>
     <string name="quick_actions">Quick Actions</string>
     <string name="quick_action_card_icon">Quick action card icon</string>
-    <string name="scan_food">Scan Food</string>
+    <string name="practice_cards">Practice Cards</string>
     <string name="safety_check">Safety Check</string>
     <string name="explore_solutions">Explore Solutions</string>
     <string name="tips_available">0 tips available</string>
@@ -22,4 +22,12 @@
     <string name="easy">Easy</string>
     <string name="no_tips_yet">No tips yet</string>
     <string name="check_back_later">Check back later!</string>
+    <string name="access_more_tips_free">Access more tips for free</string>
+    <string name="sign_up">Sign me up!</string>
+    <string name="sign_in">Sign in</string>
+    <string name="tips_to_improvise_for_necessities">Tips to improvise for your necessities</string>
+    <string name="enter_your_email">Enter your email</string>
+    <string name="enter_a_password">Enter a password</string>
+    <string name="complete">Complete</string>
+    <string name="continue_action">Continue</string>
 </resources>
