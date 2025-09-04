@@ -3,12 +3,15 @@ from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 import firebase_admin
 from firebase_admin import auth, credentials
 from supabase import create_client
-import os
+import os, json
 from dotenv import load_dotenv
 
 # Initialize Firebase Admin SDK
-cred = credentials.Certificate("../../serviceAccountKey.json")
-firebase_admin.initialize_app(cred)
+firebase_creds = os.getenv("FIREBASE_CREDENTIALS")
+
+if not firebase_admin._apps:  # prevents re-init
+    cred = credentials.Certificate(json.loads(firebase_creds))
+    firebase_admin.initialize_app(cred)
 
 load_dotenv()  # load .env file
 
