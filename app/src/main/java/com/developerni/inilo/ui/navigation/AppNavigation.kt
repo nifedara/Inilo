@@ -132,7 +132,7 @@ fun AppNavigation(
                     onRoute = {
                         when (it) {
                             SignUpScreenNavigation.Back -> { navController.popBackStack() }
-                            SignUpScreenNavigation.SignUp -> {}
+                            SignUpScreenNavigation.SignUpComplete -> { navController.navigate(Navigate.Screen.LandingScreen.route) }
                         }
                     }
                 )

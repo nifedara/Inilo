@@ -14,6 +14,8 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
+
+        buildConfigField("String", "BASE_URL", "\"https://inilo.onrender.com/\"")
     }
 
     buildTypes {
@@ -24,6 +26,13 @@ android {
                 "proguard-rules.pro"
             )
         }
+        getByName("debug") {
+            buildConfigField(
+                type = "String",
+                name = "BASE_URL",
+                value = "\"https://inilo.onrender.com/\""
+            )
+        }
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
@@ -31,6 +40,9 @@ android {
     }
     kotlinOptions {
         jvmTarget = "11"
+    }
+    buildFeatures {
+        buildConfig = true
     }
 }
 
@@ -60,4 +72,8 @@ dependencies {
     implementation(libs.firebase.auth)
 
     implementation(libs.google.firebase.auth)
+
+    implementation(libs.okhttp)
+    implementation(libs.okhttp.interceptor)
+    testImplementation(libs.okhttp.mockwebserver)
 }

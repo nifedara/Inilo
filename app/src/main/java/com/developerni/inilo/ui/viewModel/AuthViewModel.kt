@@ -1,11 +1,14 @@
 package com.developerni.inilo.ui.viewModel
 
-import android.util.Log
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.developerni.inilo.ui.viewModel.util.AuthVMState
+import com.developerni.inilo.ui.viewModel.util.IniloViewModel
 import com.inilo.data.model.FirebaseAuthRequest
-import com.inilo.domain.usecase.auth.SignInUseCase
-import com.inilo.domain.usecase.auth.SignUpUseCase
+import com.inilo.data.pref.PreferenceStorageImpl
+import com.inilo.domain.usecase.auth.firebase.SignInUseCase
+import com.inilo.domain.usecase.auth.firebase.SignUpUseCase
+import com.inilo.domain.usecase.auth.remote.RemoteSignInUseCase
+import com.inilo.domain.usecase.auth.remote.RemoteSignUpUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -14,9 +17,12 @@ import javax.inject.Inject
 
 @HiltViewModel
 class AuthViewModel @Inject constructor(
-    private val signInUseCase: SignInUseCase,
-    private val signUpUseCase: SignUpUseCase,
-): ViewModel() {
+    private val firebaseSignInUseCase: SignInUseCase,
+    private val firebaseSignUpUseCase: SignUpUseCase,
+    private val remoteSignInUseCase: RemoteSignInUseCase,
+    private val remoteSignUpUseCase: RemoteSignUpUseCase,
+    private val preferenceStorage: PreferenceStorageImpl
+): IniloViewModel<AuthVMState>(AuthVMState.InitialState) {
 
     private val _loading = MutableStateFlow(false)
     val loading: StateFlow<Boolean> = _loading
@@ -24,22 +30,38 @@ class AuthViewModel @Inject constructor(
 
     fun signIn(authRequest: FirebaseAuthRequest) {
         _loading.value = true
+        setScreenState(AuthVMState.LoadingState)
         viewModelScope.launch {
 
-            signInUseCase.invoke(authRequest).collect { firebaseToken ->
+            firebaseSignInUseCase.invoke(authRequest).collect { firebaseToken ->
                 _loading.value = false
-                Log.v("token", firebaseToken.token)
+                remoteSignInUseCase.invoke().collect {
+                    if (it.isSuccess()) {
+                        preferenceStorage.saveLoginStatus(true)
+                        setScreenState(AuthVMState.SignInSuccessState(currentVMStateValue.vmData.copy(message = "sign in successful")))
+                    } else {
+                        setScreenState(AuthVMState.Error(currentVMStateValue.vmData.copy(error = it.message)))
+                    }
+                }
             }
         }
     }
 
     fun signUp(authRequest: FirebaseAuthRequest) {
         _loading.value = true
+        setScreenState(AuthVMState.LoadingState)
         viewModelScope.launch {
 
-            signUpUseCase.invoke(authRequest).collect { firebaseToken ->
+            firebaseSignUpUseCase.invoke(authRequest).collect { firebaseToken ->
                 _loading.value = false
-                Log.v("token", firebaseToken.token)
+                remoteSignUpUseCase.invoke().collect {
+                    if (it.isSuccess()) {
+                        preferenceStorage.saveLoginStatus(true)
+                        setScreenState(AuthVMState.SignUpSuccessState(currentVMStateValue.vmData.copy(message = "sign up successful")))
+                    } else {
+                        setScreenState(AuthVMState.Error(currentVMStateValue.vmData.copy(error = it.message)))
+                    }
+                }
             }
         }
     }

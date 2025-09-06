@@ -19,6 +19,8 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -39,10 +41,11 @@ import com.developerni.inilo.R
 import com.developerni.inilo.ui.component.IniloScaffold
 import com.developerni.inilo.ui.component.util.iniloFontFamily
 import com.developerni.inilo.ui.viewModel.AuthViewModel
+import com.developerni.inilo.ui.viewModel.util.AuthVMState
 import com.inilo.data.model.FirebaseAuthRequest
 
 enum class SignUpScreenNavigation {
-    Back, SignUp
+    Back, SignUpComplete
 }
 
 @Composable
@@ -50,6 +53,17 @@ fun SignUpScreen(
     onRoute: (SignUpScreenNavigation) -> Unit,
 ) {
     val authViewModel: AuthViewModel = hiltViewModel()
+    val vmState = authViewModel.vmState.collectAsState()
+
+    LaunchedEffect(vmState.value) {
+        when (vmState.value) {
+            is AuthVMState.Error -> {}
+            is AuthVMState.SignUpSuccessState -> {
+                onRoute(SignUpScreenNavigation.SignUpComplete)
+            }
+            else -> {}
+        }
+    }
 
     IniloScaffold(
         onBack = { onRoute(SignUpScreenNavigation.Back) },
