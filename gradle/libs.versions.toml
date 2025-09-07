@@ -23,6 +23,7 @@ retrofit = "2.11.0"
 moshi = "1.15.1"
 gson = "2.9.0"
 okhttp = "4.12.0"
+lottie = "6.0.1"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -64,6 +65,7 @@ compose-material-iconsext = { module = "androidx.compose.material:material-icons
 okhttp = { module = "com.squareup.okhttp3:okhttp", version.ref = "okhttp"}
 okhttp_interceptor = { module = "com.squareup.okhttp3:logging-interceptor", version.ref = "okhttp"}
 okhttp_mockwebserver = { module = "com.squareup.okhttp3:mockwebserver", version.ref = "okhttp"}
+lottie = { module = "com.airbnb.android:lottie-compose", version.ref = "lottie" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

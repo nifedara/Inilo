@@ -94,4 +94,6 @@ dependencies {
     implementation(libs.google.firebase.analytics)
 
     implementation(libs.compose.material.iconsext)
+
+    implementation(libs.lottie)
 }

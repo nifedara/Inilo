@@ -34,7 +34,6 @@ class AuthViewModel @Inject constructor(
         viewModelScope.launch {
 
             firebaseSignInUseCase.invoke(authRequest).collect { firebaseToken ->
-                _loading.value = false
                 remoteSignInUseCase.invoke().collect {
                     if (it.isSuccess()) {
                         preferenceStorage.saveLoginStatus(true)
@@ -53,7 +52,6 @@ class AuthViewModel @Inject constructor(
         viewModelScope.launch {
 
             firebaseSignUpUseCase.invoke(authRequest).collect { firebaseToken ->
-                _loading.value = false
                 remoteSignUpUseCase.invoke().collect {
                     if (it.isSuccess()) {
                         preferenceStorage.saveLoginStatus(true)
