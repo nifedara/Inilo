@@ -71,7 +71,7 @@ fun IniloScaffold(
     content: (@Composable (PaddingValues) -> Unit),
 ) {
     val composition by rememberLottieComposition(
-        LottieCompositionSpec.RawRes(R.raw.loading)
+        LottieCompositionSpec.RawRes(R.raw.loading_animation_blue)
     )
 
     // animation progress
@@ -182,7 +182,7 @@ fun IniloScaffold(
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                if (scaffoldState.overlayVisible)
+                if (scaffoldState.overlayVisible) {
                     Card(
                         modifier = Modifier,
                         colors = CardDefaults.cardColors(Color.White),
@@ -192,11 +192,8 @@ fun IniloScaffold(
                             horizontalAlignment = Alignment.CenterHorizontally,
                             modifier = Modifier.padding(10.dp)
                         ) {
-                            Spacer(
-                                modifier = Modifier
-                                    .height(4.dp)
-                                    .padding(horizontal = 20.dp)
-                            )
+                            Spacer(modifier = Modifier.height(4.dp))
+
                             LottieAnimation(
                                 composition = composition,
                                 progress = progress,
@@ -207,13 +204,16 @@ fun IniloScaffold(
 
                             Text(
                                 scaffoldState.loadingText, style = TextStyle(
-                                    fontFamily = iniloFontFamily, color = Color.Black, fontSize = 12.sp
+                                    fontFamily = iniloFontFamily,
+                                    color = Color.Black,
+                                    fontSize = 12.sp
                                 ), modifier = Modifier.padding(horizontal = 20.dp)
                             )
 
                             Spacer(modifier = Modifier.height(10.dp))
                         }
                     }
+                }
             }
         }
 

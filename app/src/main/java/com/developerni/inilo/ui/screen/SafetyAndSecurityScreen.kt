@@ -120,11 +120,11 @@ fun SafetyAndSecurityScreen(
             ) {
                 TipCard(
                     onClick = {
-                        loginStateViewModel.incrementCardAccessCount()
                         if (loginStateViewModel.cardAccessCount.value > 5 && !loginStateViewModel.isLoggedIn.value) {
                             //showLoginDialog = true
                             onRoute(SafetyAndSecurityScreenNavigation.LoginRequired)
                         }
+                        loginStateViewModel.incrementCardAccessCount()
                     }
                 )
             }
