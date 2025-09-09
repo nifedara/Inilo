@@ -19,6 +19,8 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -39,23 +41,40 @@ import com.developerni.inilo.R
 import com.developerni.inilo.ui.component.IniloScaffold
 import com.developerni.inilo.ui.component.util.iniloFontFamily
 import com.developerni.inilo.ui.viewModel.AuthViewModel
+import com.developerni.inilo.ui.viewModel.LoginStateViewModel
+import com.developerni.inilo.ui.viewModel.util.AuthVMState
 import com.inilo.data.model.FirebaseAuthRequest
 
 enum class SignUpScreenNavigation {
-    Back, SignUp
+    Back, SignUpComplete
 }
 
 @Composable
 fun SignUpScreen(
     onRoute: (SignUpScreenNavigation) -> Unit,
+    loginStateViewModel: LoginStateViewModel
 ) {
     val authViewModel: AuthViewModel = hiltViewModel()
+    val vmState = authViewModel.vmState.collectAsState()
+
+    loginStateViewModel.getAuthColor()
+    val authColor = loginStateViewModel.authColor.collectAsState().value
+
+    LaunchedEffect(vmState.value) {
+        when (vmState.value) {
+            is AuthVMState.Error -> {}
+            is AuthVMState.SignUpSuccessState -> {
+                onRoute(SignUpScreenNavigation.SignUpComplete)
+            }
+            else -> {}
+        }
+    }
 
     IniloScaffold(
         onBack = { onRoute(SignUpScreenNavigation.Back) },
         pageTitle = "Sign up",
         appBarColor = Color(0xFFfbf6ef),
-        backButtonColor = Color(0xFF9168f5),
+        backButtonColor = Color(authColor),
         backButtonIconColor = Color(0xFFfbf6ef),
     ) {
         var email by rememberSaveable { mutableStateOf("") }
@@ -129,7 +148,7 @@ fun SignUpScreen(
                 enabled = email.isNotEmpty() && password.isNotEmpty(),
                 shape = RoundedCornerShape(16.dp),
                 modifier = Modifier.fillMaxWidth(),
-                colors = ButtonDefaults.buttonColors(Color(0xFF9168f5), contentColor = Color(0xFFfbf6ef))
+                colors = ButtonDefaults.buttonColors(Color(authColor), contentColor = Color(0xFFfbf6ef))
             ) {
                 Text(
                     text = stringResource(R.string.complete),

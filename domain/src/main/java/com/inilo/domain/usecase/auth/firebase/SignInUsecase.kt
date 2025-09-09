@@ -1,4 +1,4 @@
-package com.inilo.domain.usecase.auth
+package com.inilo.domain.usecase.auth.firebase
 
 import com.inilo.data.auth.repository.FirebaseRepository
 import com.inilo.data.model.FirebaseAuthRequest
@@ -7,12 +7,11 @@ import com.inilo.domain.util.UseCaseWithParam
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
-
-class SignUpUseCase @Inject constructor(
+class SignInUseCase @Inject constructor(
     private val repository: FirebaseRepository
 ): UseCaseWithParam<FirebaseAuthRequest, FirebaseToken> {
 
     override suspend fun invoke(request: FirebaseAuthRequest): Flow<FirebaseToken> {
-        return repository.signUp(authRequest = request)
+        return repository.signIn(authRequest = request)
     }
 }

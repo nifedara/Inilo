@@ -8,6 +8,7 @@ plugins {
     alias(libs.plugins.kotlin.kapt)
     alias(libs.plugins.hilt)
     id("com.google.gms.google-services")
+    id("kotlin-parcelize")
 }
 
 val keystorePropertiesFile = rootProject.file("keystore.properties")
@@ -93,4 +94,6 @@ dependencies {
     implementation(libs.google.firebase.analytics)
 
     implementation(libs.compose.material.iconsext)
+
+    implementation(libs.lottie)
 }

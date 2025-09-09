@@ -8,12 +8,16 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.developerni.inilo.ui.component.SolutionScreenType
 import com.developerni.inilo.ui.screen.EducationScreen
+import com.developerni.inilo.ui.screen.EducationScreenNavigation
 import com.developerni.inilo.ui.screen.FoodScreen
+import com.developerni.inilo.ui.screen.FoodScreenNavigation
 import com.developerni.inilo.ui.screen.HealthAndSanitationScreen
+import com.developerni.inilo.ui.screen.HealthAndSanitationScreenNavigation
 import com.developerni.inilo.ui.screen.LandingScreen
 import com.developerni.inilo.ui.screen.LoginRequiredScreen
 import com.developerni.inilo.ui.screen.LoginRequiredScreenNavigation
 import com.developerni.inilo.ui.screen.PowerScreen
+import com.developerni.inilo.ui.screen.PowerScreenNavigation
 import com.developerni.inilo.ui.screen.SafetyAndSecurityScreen
 import com.developerni.inilo.ui.screen.SafetyAndSecurityScreenNavigation
 import com.developerni.inilo.ui.screen.SignInScreen
@@ -21,6 +25,7 @@ import com.developerni.inilo.ui.screen.SignInScreenNavigation
 import com.developerni.inilo.ui.screen.SignUpScreen
 import com.developerni.inilo.ui.screen.SignUpScreenNavigation
 import com.developerni.inilo.ui.screen.WaterScreen
+import com.developerni.inilo.ui.screen.WaterScreenNavigation
 import com.developerni.inilo.ui.viewModel.LoginStateViewModel
 
 @OptIn(ExperimentalSharedTransitionApi::class)
@@ -70,48 +75,73 @@ fun AppNavigation(
 
             composable(route = Navigate.Screen.EducationScreen.route) {
                 EducationScreen(
-                    onBack = { navController.popBackStack() }
+                    onRoute = {
+                        when (it) {
+                            EducationScreenNavigation.Back -> { navController.popBackStack() }
+                            EducationScreenNavigation.LoginRequired -> { navController.navigate(Navigate.Screen.LoginRequiredScreen.route) }
+                        }
+                    },
+                    loginStateViewModel = viewModel,
                 )
             }
 
             composable(route = Navigate.Screen.WaterScreen.route) {
                 WaterScreen(
-                    onBack = { navController.popBackStack() }
+                    onRoute = {
+                        when (it) {
+                            WaterScreenNavigation.Back -> { navController.popBackStack() }
+                            WaterScreenNavigation.LoginRequired -> { navController.navigate(Navigate.Screen.LoginRequiredScreen.route) }
+                        }
+                    },
+                    loginStateViewModel = viewModel,
                 )
             }
 
             composable(route = Navigate.Screen.PowerScreen.route) {
                 PowerScreen(
-                    onBack = { navController.popBackStack() }
+                    onRoute = {
+                        when (it) {
+                            PowerScreenNavigation.Back -> { navController.popBackStack() }
+                            PowerScreenNavigation.LoginRequired -> { navController.navigate(Navigate.Screen.LoginRequiredScreen.route) }
+                        }
+                    },
+                    loginStateViewModel = viewModel,
                 )
             }
 
             composable(route = Navigate.Screen.HealthAndSanitationScreen.route) {
                 HealthAndSanitationScreen(
-                    onBack = { navController.popBackStack() }
+                    onRoute = {
+                        when (it) {
+                            HealthAndSanitationScreenNavigation.Back -> { navController.popBackStack() }
+                            HealthAndSanitationScreenNavigation.LoginRequired -> { navController.navigate(Navigate.Screen.LoginRequiredScreen.route) }
+                        }
+                    },
+                    loginStateViewModel = viewModel,
                 )
             }
 
             composable(route = Navigate.Screen.FoodScreen.route) {
                 FoodScreen(
-                    onBack = { navController.popBackStack() }
+                    onRoute = {
+                        when (it) {
+                            FoodScreenNavigation.Back -> { navController.popBackStack() }
+                            FoodScreenNavigation.LoginRequired -> { navController.navigate(Navigate.Screen.LoginRequiredScreen.route) }
+                        }
+                    },
+                    loginStateViewModel = viewModel,
                 )
             }
 
             composable(route = Navigate.Screen.SafetyAndSecurityScreen.route) {
                 SafetyAndSecurityScreen(
-                    loginStateViewModel = viewModel,
                     onRoute = {
                         when (it) {
-                            SafetyAndSecurityScreenNavigation.Back -> {
-                                navController.popBackStack()
-                            }
-
-                            SafetyAndSecurityScreenNavigation.LoginRequired -> {
-                                navController.navigate(Navigate.Screen.LoginRequiredScreen.route)
-                            }
+                            SafetyAndSecurityScreenNavigation.Back -> { navController.popBackStack() }
+                            SafetyAndSecurityScreenNavigation.LoginRequired -> { navController.navigate(Navigate.Screen.LoginRequiredScreen.route) }
                         }
-                    }
+                    },
+                    loginStateViewModel = viewModel
                 )
             }
 
@@ -123,7 +153,8 @@ fun AppNavigation(
                             LoginRequiredScreenNavigation.SignIn -> { navController.navigate(Navigate.Screen.SignInScreen.route) }
                             LoginRequiredScreenNavigation.SignUp -> { navController.navigate(Navigate.Screen.SignUpScreen.route) }
                         }
-                    }
+                    },
+                    loginStateViewModel = viewModel
                 )
             }
 
@@ -132,9 +163,10 @@ fun AppNavigation(
                     onRoute = {
                         when (it) {
                             SignUpScreenNavigation.Back -> { navController.popBackStack() }
-                            SignUpScreenNavigation.SignUp -> {}
+                            SignUpScreenNavigation.SignUpComplete -> { navController.navigate(Navigate.Screen.LandingScreen.route) }
                         }
-                    }
+                    },
+                    loginStateViewModel = viewModel,
                 )
             }
 
@@ -143,9 +175,10 @@ fun AppNavigation(
                     onRoute = {
                         when (it) {
                             SignInScreenNavigation.Back -> { navController.popBackStack() }
-                            SignInScreenNavigation.SignIn -> {}
+                            SignInScreenNavigation.SignInComplete -> { navController.navigate(Navigate.Screen.LandingScreen.route) }
                         }
-                    }
+                    },
+                    loginStateViewModel = viewModel,
                 )
             }
         }

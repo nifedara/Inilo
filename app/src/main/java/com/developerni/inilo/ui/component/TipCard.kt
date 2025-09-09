@@ -41,11 +41,19 @@ fun TipCard(
                     shape = RoundedCornerShape(50.dp),
                     colors = CardDefaults.cardColors(containerColor = Color.Magenta)
                 ) {
-                    Text(
+                    /*Text(
                         text = stringResource(R.string.easy),
                         modifier = Modifier.padding(horizontal = 10.dp, vertical = 2.dp),
                         fontFamily = iniloFontFamily,
                         color = Color.White
+                    )*/
+                    Text(
+                        text = stringResource(R.string.easy),
+                        modifier = Modifier.padding(horizontal = 10.dp, vertical = 2.dp),
+                        fontFamily = iniloFontFamily,
+                        fontWeight = FontWeight.Light,
+                        color = Color.White,
+                        fontSize = 14.sp,
                     )
                 }
 

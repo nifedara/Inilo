@@ -19,6 +19,8 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -38,25 +40,59 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.developerni.inilo.R
 import com.developerni.inilo.ui.component.IniloScaffold
 import com.developerni.inilo.ui.component.util.iniloFontFamily
+import com.developerni.inilo.ui.component.util.rememberIniloScaffoldState
 import com.developerni.inilo.ui.viewModel.AuthViewModel
+import com.developerni.inilo.ui.viewModel.LoginStateViewModel
+import com.developerni.inilo.ui.viewModel.util.AuthVMState
 import com.inilo.data.model.FirebaseAuthRequest
+import kotlinx.coroutines.delay
 
 enum class SignInScreenNavigation {
-    Back, SignIn
+    Back, SignInComplete
 }
 
 @Composable
 fun SignInScreen(
     onRoute: (SignInScreenNavigation) -> Unit,
+    loginStateViewModel: LoginStateViewModel
 ) {
     val authViewModel: AuthViewModel = hiltViewModel()
+    val scaffoldState = rememberIniloScaffoldState()
+    val vmState = authViewModel.vmState.collectAsState()
+    val authColor = loginStateViewModel.authColor.collectAsState().value
+
+    LaunchedEffect(vmState.value) {
+        when (vmState.value) {
+            is AuthVMState.Error -> {
+                scaffoldState.dismissOverlay()
+            }
+
+            is AuthVMState.SignInSuccessState -> {
+                scaffoldState.showMessage("Sign in successful")
+                delay(300)
+
+                // scaffoldState.dismissOverlay()
+                onRoute(SignInScreenNavigation.SignInComplete)
+            }
+
+            is AuthVMState.LoadingState -> {
+                scaffoldState.showLoading(
+                    loadingMessage = "Signing in...",
+                )
+                //scaffoldState.uLoading
+            }
+
+            else -> {}
+        }
+    }
 
     IniloScaffold(
         onBack = { onRoute(SignInScreenNavigation.Back) },
         pageTitle = "Sign in",
         appBarColor = Color(0xFFfbf6ef),
-        backButtonColor = Color(0xFF9168f5),
+        backButtonColor = Color(authColor),
         backButtonIconColor = Color(0xFFfbf6ef),
+        scaffoldState = scaffoldState
     ) {
         var email by rememberSaveable { mutableStateOf("") }
         var password by rememberSaveable { mutableStateOf("") }
@@ -129,7 +165,7 @@ fun SignInScreen(
                 enabled = email.isNotEmpty() && password.isNotEmpty(),
                 shape = RoundedCornerShape(16.dp),
                 modifier = Modifier.fillMaxWidth(),
-                colors = ButtonDefaults.buttonColors(Color(0xFF9168f5), contentColor = Color(0xFFfbf6ef))
+                colors = ButtonDefaults.buttonColors(Color(authColor), contentColor = Color(0xFFfbf6ef))
             ) {
                 Text(
                     text = stringResource(R.string.continue_action),

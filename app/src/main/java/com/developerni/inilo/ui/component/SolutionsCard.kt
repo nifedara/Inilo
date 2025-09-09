@@ -36,6 +36,7 @@ fun SolutionsCard(modifier: Modifier,
                   iconSize: Dp = 32.dp,
                   iconColor: Color
 ) {
+    val textColor = Color(0xFF3b1d38)
     Card(
         shape = RoundedCornerShape(16.dp),
         modifier = modifier.padding(bottom = 16.dp)
@@ -74,8 +75,9 @@ fun SolutionsCard(modifier: Modifier,
                     text = stringResource(title),
                     fontFamily = iniloFontFamily,
                     fontWeight = FontWeight.Medium,
-                    fontSize = 18.sp,
-                    modifier = Modifier.padding(top = 10.dp)
+                    fontSize = 16.sp,
+                    modifier = Modifier.padding(top = 10.dp),
+                    color = textColor
                 )
                 Text(
                     text = stringResource(R.string.tips_available),
@@ -83,7 +85,7 @@ fun SolutionsCard(modifier: Modifier,
                     fontWeight = FontWeight.Light,
                     modifier = Modifier.padding(top = 8.dp),
                     fontSize = 16.sp,
-                    color = Color.Black.copy(0.7f)
+                    color = textColor.copy(0.7f)
                 )
             }
         }

@@ -13,6 +13,7 @@ import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -24,21 +25,32 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.developerni.inilo.R
 import com.developerni.inilo.ui.component.IniloScaffold
-import com.developerni.inilo.ui.component.TipEmptyState
+import com.developerni.inilo.ui.component.TipCard
 import com.developerni.inilo.ui.component.util.iniloFontFamily
+import com.developerni.inilo.ui.viewModel.LoginStateViewModel
 
+enum class EducationScreenNavigation {
+    Back, LoginRequired
+}
 @Composable
 fun EducationScreen(
-    onBack: () -> Unit,
+    onRoute: (EducationScreenNavigation) -> Unit,
+    loginStateViewModel: LoginStateViewModel
 ) {
+    val educationColor = Color(0xFF9168f5)
+    val textColor = Color(0xFFfbf6ef)
+
+    LaunchedEffect(Unit) {
+        loginStateViewModel.saveAuthColor(0xFF9168f5)
+    }
     IniloScaffold(
-        onBack = { onBack() },
+        onBack = { onRoute(EducationScreenNavigation.Back) },
         pageTitle = "",
-        appBarColor = Color(0xFF3b1d38)
+        appBarColor = educationColor
     ) {
         Column {
             Column(
-                modifier = Modifier.background(Color(0xFF3b1d38))
+                modifier = Modifier.background(educationColor)
                     .fillMaxWidth()
                     .padding(top = 0.dp, start = 24.dp, end = 24.dp),
                 horizontalAlignment = Alignment.CenterHorizontally,
@@ -46,7 +58,7 @@ fun EducationScreen(
             ) {
                 Card(
                     shape = RoundedCornerShape(50.dp),
-                    colors = CardDefaults.cardColors(containerColor = Color.White),
+                    colors = CardDefaults.cardColors(containerColor = textColor),
                     modifier = Modifier.padding(bottom = 10.dp)
                 ) {
                     Row(
@@ -57,7 +69,7 @@ fun EducationScreen(
                         Icon(
                             painter = painterResource(R.drawable.education),
                             contentDescription = stringResource(R.string.quick_action_card_icon),
-                            modifier = Modifier.padding(8.dp).size(30.dp)
+                            modifier = Modifier.padding(8.dp).size(30.dp),
                         )
                     }
                 }
@@ -67,7 +79,8 @@ fun EducationScreen(
                     modifier = Modifier.padding(bottom = 4.dp),
                     fontWeight = FontWeight.Medium,
                     fontFamily = iniloFontFamily,
-                    fontSize = 22.sp
+                    fontSize = 22.sp,
+                    color = textColor
                 )
                 Text(
                     text = stringResource(R.string.smart_learning_techniques_and_resources),
@@ -75,7 +88,8 @@ fun EducationScreen(
                     fontFamily = iniloFontFamily,
                     fontWeight = FontWeight.Light,
                     fontSize = 16.sp,
-                    textAlign = TextAlign.Center
+                    textAlign = TextAlign.Center,
+                    color = textColor
                 )
                 Text(
                     text = stringResource(R.string.tips_available),
@@ -83,11 +97,25 @@ fun EducationScreen(
                     fontFamily = iniloFontFamily,
                     fontWeight = FontWeight.Light,
                     fontSize = 14.sp,
-                    textAlign = TextAlign.Center
+                    textAlign = TextAlign.Center,
+                    color = textColor
                 )
             }
 
             Column(
+                modifier = Modifier.padding(top = 32.dp, start = 24.dp, end = 24.dp)
+            ) {
+                TipCard(
+                    onClick = {
+                        if (loginStateViewModel.cardAccessCount.value > 5 && !loginStateViewModel.isLoggedIn.value) {
+                            onRoute(EducationScreenNavigation.LoginRequired)
+                        }
+                        loginStateViewModel.incrementCardAccessCount()
+                    }
+                )
+            }
+
+            /*Column(
                 modifier = Modifier
                     .padding(top = 180.dp, start = 24.dp, end = 24.dp)
                     .fillMaxWidth(),
@@ -95,7 +123,7 @@ fun EducationScreen(
                 verticalArrangement = Arrangement.Center
             ) {
                 TipEmptyState()
-            }
+            }*/
         }
     }
 }

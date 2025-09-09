@@ -13,6 +13,7 @@ import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -24,15 +25,23 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.developerni.inilo.R
 import com.developerni.inilo.ui.component.IniloScaffold
-import com.developerni.inilo.ui.component.TipEmptyState
+import com.developerni.inilo.ui.component.TipCard
 import com.developerni.inilo.ui.component.util.iniloFontFamily
+import com.developerni.inilo.ui.viewModel.LoginStateViewModel
 
+enum class WaterScreenNavigation {
+    Back, LoginRequired
+}
 @Composable
 fun WaterScreen(
-    onBack: () -> Unit
+    onRoute: (WaterScreenNavigation) -> Unit,
+    loginStateViewModel: LoginStateViewModel
 ) {
+    LaunchedEffect(Unit) {
+        loginStateViewModel.saveAuthColor(0xFF02bc59)
+    }
     IniloScaffold(
-        onBack = { onBack() },
+        onBack = { onRoute(WaterScreenNavigation.Back) },
         pageTitle = "",
         appBarColor = Color(0xFF02bc59)
     ) {
@@ -57,7 +66,7 @@ fun WaterScreen(
                         Icon(
                             painter = painterResource(R.drawable.water),
                             contentDescription = stringResource(R.string.quick_action_card_icon),
-                            modifier = Modifier.padding(8.dp).size(30.dp)
+                            modifier = Modifier.padding(8.dp).size(30.dp),
                         )
                     }
                 }
@@ -87,7 +96,7 @@ fun WaterScreen(
                 )
             }
 
-            Column(
+            /*Column(
                 modifier = Modifier
                     .padding(top = 180.dp, start = 24.dp, end = 24.dp)
                     .fillMaxWidth(),
@@ -95,6 +104,18 @@ fun WaterScreen(
                 verticalArrangement = Arrangement.Center
             ) {
                 TipEmptyState()
+            }*/
+            Column(
+                modifier = Modifier.padding(top = 32.dp, start = 24.dp, end = 24.dp)
+            ) {
+                TipCard(
+                    onClick = {
+                        if (loginStateViewModel.cardAccessCount.value > 5 && !loginStateViewModel.isLoggedIn.value) {
+                            onRoute(WaterScreenNavigation.LoginRequired)
+                        }
+                        loginStateViewModel.incrementCardAccessCount()
+                    }
+                )
             }
         }
     }

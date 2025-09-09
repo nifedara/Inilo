@@ -13,4 +13,12 @@ interface PreferenceStorage {
     suspend fun incrementCardAccessCount()
 
     fun getCardAccessCount(): Flow<Int>
+
+    suspend fun saveToken(token: String)
+
+    fun getToken(): Flow<String>
+
+    suspend fun saveAuthColor(color: Long)
+
+    fun getAuthColor(): Flow<Long>
 }
