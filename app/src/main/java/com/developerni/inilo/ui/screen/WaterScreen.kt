@@ -57,7 +57,7 @@ fun WaterScreen(
                         Icon(
                             painter = painterResource(R.drawable.water),
                             contentDescription = stringResource(R.string.quick_action_card_icon),
-                            modifier = Modifier.padding(8.dp).size(30.dp)
+                            modifier = Modifier.padding(8.dp).size(30.dp),
                         )
                     }
                 }

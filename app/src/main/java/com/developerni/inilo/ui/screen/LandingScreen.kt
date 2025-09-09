@@ -2,7 +2,9 @@ package com.developerni.inilo.ui.screen
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -10,18 +12,24 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Divider
+import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -45,12 +53,65 @@ fun LandingScreen(
     onSolutionClick: (SolutionScreenType) -> Unit,
     loginStateViewModel: LoginStateViewModel
 ) {
+
+    val isLoggedIn = loginStateViewModel.isLoggedIn.collectAsState()
+
     LazyColumn(
         modifier = Modifier
             .fillMaxSize()
             .background(Color(0xFFfbf6ef))
             .padding(top = 60.dp)
     ) {
+        if (isLoggedIn.value) {
+            stickyHeader {
+                Column(
+                    horizontalAlignment = Alignment.Start,
+                    verticalArrangement = Arrangement.Top,
+                    modifier = Modifier.padding(start = 20.dp)
+                        .background(Color(0xFFfbf6ef))
+                        .fillMaxWidth()
+                ) {
+                    Row(
+                        verticalAlignment = Alignment.Bottom,
+                    ) {
+                        Box(
+                            contentAlignment = Alignment.Center,
+                            modifier = Modifier
+                                .size(48.dp)
+                                .clip(CircleShape)
+                                .border(
+                                    width = 1.5.dp,
+                                    shape = CircleShape,
+                                    color = Color(0xFF9168f5)
+                                )
+                        ) {
+                            Icon(
+                                painter = painterResource(R.drawable.profile),
+                                contentDescription = null,
+                                modifier = Modifier.size(24.dp),
+                                tint = Color(0xFF9168f5)
+                            )
+                        }
+
+                        Spacer(modifier = Modifier.width(10.dp))
+
+                        Text(
+                            text = "Welcome",
+                            fontFamily = iniloFontFamily,
+                            fontWeight = FontWeight.Light,
+                            fontSize = 16.sp,
+                            modifier = Modifier.padding(bottom = 10.dp),
+                            color = Color(0xFF3b1d38)
+                        )
+                    }
+                    Spacer(modifier = Modifier.height(6.dp))
+                }
+                Divider(
+                    color = Color(0xffede9e3),
+                    thickness = 10.dp
+                )
+            }
+        }
         item {
             Column(
                 horizontalAlignment = Alignment.CenterHorizontally,
@@ -58,19 +119,22 @@ fun LandingScreen(
                     .fillMaxWidth()
                     .padding(top = 10.dp, start = 24.dp, end = 24.dp)
             ) {
-                Text(
-                    text = stringResource(R.string.welcome_to),
-                    fontFamily = iniloFontFamily,
-                    fontWeight = FontWeight.Light,
-                    fontSize = 20.sp,
-                    modifier = Modifier.padding(bottom = 10.dp)
-                )
+                if (!isLoggedIn.value) {
+                    Text(
+                        text = stringResource(R.string.welcome_to),
+                        fontFamily = iniloFontFamily,
+                        fontWeight = FontWeight.Light,
+                        fontSize = 20.sp,
+                        modifier = Modifier.padding(bottom = 10.dp)
+                    )
+                }
                 Text(
                     text = stringResource(R.string.app_name),
                     fontFamily = iniloFontFamily,
                     fontSize = 28.sp,
                     fontWeight = FontWeight.Medium,
-                    modifier = Modifier.padding(bottom = 10.dp)
+                    modifier = Modifier.padding(bottom = 10.dp),
+                    color = Color(0xFF3b1d38)
                 )
                 Text(
                     text = stringResource(R.string.improvise_for_your_daily_needs),
@@ -108,7 +172,8 @@ fun LandingScreen(
                     fontSize = 22.5.sp,
                     fontFamily = iniloFontFamily,
                     fontWeight = FontWeight.Medium,
-                    modifier = Modifier.padding(start = 24.dp, top = 16.dp, bottom = 10.dp)
+                    modifier = Modifier.padding(start = 24.dp, top = 16.dp, bottom = 10.dp),
+                    color = Color(0xFF3b1d38)
                 )
             }
         }
@@ -123,13 +188,15 @@ fun LandingScreen(
                 ) {
                     QuickActionCard(
                         name = R.string.practice_cards, modifier = Modifier.weight(0.5f),
-                        color = Color(0xFF3b1d38),
+                        //color = Color(0xFF02bc59),
+                        color = Color(0xFF9168f5),
                         icon = R.drawable.quiz
                     )
                     Spacer(modifier = Modifier.width(12.dp))
                     QuickActionCard(
                         name = R.string.safety_check, modifier = Modifier.weight(0.5f),
-                        color = Color(0xFF3b1d38),
+                        color = Color(0xFF9168f5),
+                        //color = Color(0xFF02bc59),
                         icon = R.drawable.safety_check
                     )
                 }
@@ -150,7 +217,8 @@ fun LandingScreen(
                         fontFamily = iniloFontFamily,
                         fontSize = 22.5.sp,
                         fontWeight = FontWeight.Medium,
-                        modifier = Modifier.padding(top = 20.dp, bottom = 10.dp, start = 24.dp)
+                        modifier = Modifier.padding(top = 20.dp, bottom = 10.dp, start = 24.dp),
+                        color = Color(0xFF3b1d38)
                     )
                 }
             }

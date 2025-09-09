@@ -30,7 +30,8 @@ val groupedSolutions = listOf (
 )
 
 val cardColors = listOf(
-    Color(0xFF3b1d38),
+    //Color(0xFF3b1d38),
+    Color(0xFF9168f5),
     Color(0xFF02bc59),
     Color(0xfffdce02),
     Color(0xFFff7865),
