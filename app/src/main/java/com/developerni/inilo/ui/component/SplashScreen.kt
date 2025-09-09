@@ -31,9 +31,9 @@ import kotlinx.coroutines.delay
 fun IniloSplashAnimation(onAnimationEnd: () -> Unit) {
     val letters = listOf("Ì", "n", "ì", "l", "ò")
     val colors = listOf(
-        Color(0xFF3b1d38),
-        Color(0xFFff8ce9),
         Color(0xFF9168f5),
+        Color(0xFFff8ce9),
+        Color(0xFF3b1d38),
         Color(0xFFff7865),
         Color(0xFFfdce02),
     )

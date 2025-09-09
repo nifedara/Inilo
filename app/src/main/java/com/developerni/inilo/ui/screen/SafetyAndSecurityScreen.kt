@@ -15,6 +15,7 @@ import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -42,6 +43,9 @@ fun SafetyAndSecurityScreen(
     onRoute: (SafetyAndSecurityScreenNavigation) -> Unit,
     loginStateViewModel: LoginStateViewModel
 ) {
+    LaunchedEffect(Unit) {
+        loginStateViewModel.saveAuthColor(0xFF9168f5)
+    }
     IniloScaffold(
         onBack = { onRoute(SafetyAndSecurityScreenNavigation.Back) },
         pageTitle = "",

@@ -42,6 +42,7 @@ import com.developerni.inilo.ui.component.IniloScaffold
 import com.developerni.inilo.ui.component.util.iniloFontFamily
 import com.developerni.inilo.ui.component.util.rememberIniloScaffoldState
 import com.developerni.inilo.ui.viewModel.AuthViewModel
+import com.developerni.inilo.ui.viewModel.LoginStateViewModel
 import com.developerni.inilo.ui.viewModel.util.AuthVMState
 import com.inilo.data.model.FirebaseAuthRequest
 import kotlinx.coroutines.delay
@@ -53,10 +54,12 @@ enum class SignInScreenNavigation {
 @Composable
 fun SignInScreen(
     onRoute: (SignInScreenNavigation) -> Unit,
+    loginStateViewModel: LoginStateViewModel
 ) {
     val authViewModel: AuthViewModel = hiltViewModel()
     val scaffoldState = rememberIniloScaffoldState()
     val vmState = authViewModel.vmState.collectAsState()
+    val authColor = loginStateViewModel.authColor.collectAsState().value
 
     LaunchedEffect(vmState.value) {
         when (vmState.value) {
@@ -87,7 +90,7 @@ fun SignInScreen(
         onBack = { onRoute(SignInScreenNavigation.Back) },
         pageTitle = "Sign in",
         appBarColor = Color(0xFFfbf6ef),
-        backButtonColor = Color(0xFF9168f5),
+        backButtonColor = Color(authColor),
         backButtonIconColor = Color(0xFFfbf6ef),
         scaffoldState = scaffoldState
     ) {
@@ -162,7 +165,7 @@ fun SignInScreen(
                 enabled = email.isNotEmpty() && password.isNotEmpty(),
                 shape = RoundedCornerShape(16.dp),
                 modifier = Modifier.fillMaxWidth(),
-                colors = ButtonDefaults.buttonColors(Color(0xFF9168f5), contentColor = Color(0xFFfbf6ef))
+                colors = ButtonDefaults.buttonColors(Color(authColor), contentColor = Color(0xFFfbf6ef))
             ) {
                 Text(
                     text = stringResource(R.string.continue_action),

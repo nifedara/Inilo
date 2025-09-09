@@ -15,6 +15,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -27,6 +28,7 @@ import androidx.compose.ui.unit.sp
 import com.developerni.inilo.R
 import com.developerni.inilo.ui.component.IniloScaffold
 import com.developerni.inilo.ui.component.util.iniloFontFamily
+import com.developerni.inilo.ui.viewModel.LoginStateViewModel
 
 enum class LoginRequiredScreenNavigation {
     Back, SignIn, SignUp
@@ -34,12 +36,16 @@ enum class LoginRequiredScreenNavigation {
 @Composable
 fun LoginRequiredScreen(
     onRoute: (LoginRequiredScreenNavigation) -> Unit,
+    loginStateViewModel: LoginStateViewModel
 ) {
+    loginStateViewModel.getAuthColor()
+    val authColor = loginStateViewModel.authColor.collectAsState().value
+
     IniloScaffold(
         onBack = { onRoute(LoginRequiredScreenNavigation.Back) },
         pageTitle = "",
         appBarColor = Color(0xFFfbf6ef),
-        backButtonColor = Color(0xFF9168f5),
+        backButtonColor = Color(authColor),
         backButtonIconColor = Color(0xFFfbf6ef),
         bottomBar = {
             Column(
@@ -52,7 +58,7 @@ fun LoginRequiredScreen(
                     onClick = { onRoute(LoginRequiredScreenNavigation.SignUp) },
                     shape = RoundedCornerShape(16.dp),
                     modifier = Modifier.fillMaxWidth(),
-                    colors = ButtonDefaults.buttonColors(Color(0xFF9168f5), contentColor = Color(0xFFfbf6ef))
+                    colors = ButtonDefaults.buttonColors(Color(authColor), contentColor = Color(0xFFfbf6ef))
                 ) {
                     Text(
                         text = stringResource(R.string.sign_up),
@@ -69,7 +75,7 @@ fun LoginRequiredScreen(
                     onClick = {onRoute(LoginRequiredScreenNavigation.SignIn)  },
                     shape = RoundedCornerShape(16.dp),
                     modifier = Modifier.fillMaxWidth(),
-                    colors = ButtonDefaults.outlinedButtonColors(contentColor = Color(0xFF9168f5))
+                    colors = ButtonDefaults.outlinedButtonColors(contentColor = Color(authColor))
                 ) {
                     Text(
                         text = stringResource(R.string.sign_in),
@@ -99,7 +105,7 @@ fun LoginRequiredScreen(
                     contentDescription = stringResource(R.string.quick_action_card_icon),
                     modifier = Modifier
                         .size(240.dp),
-                    tint = Color(0xFF9168f5)
+                    tint = Color(authColor)
                 )
 
                 Text(

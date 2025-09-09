@@ -13,6 +13,7 @@ import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -24,15 +25,24 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.developerni.inilo.R
 import com.developerni.inilo.ui.component.IniloScaffold
-import com.developerni.inilo.ui.component.TipEmptyState
+import com.developerni.inilo.ui.component.TipCard
 import com.developerni.inilo.ui.component.util.iniloFontFamily
+import com.developerni.inilo.ui.viewModel.LoginStateViewModel
 
+enum class PowerScreenNavigation {
+    Back, LoginRequired
+}
 @Composable
 fun PowerScreen(
-    onBack: () -> Unit
+    onRoute: (PowerScreenNavigation) -> Unit,
+    loginStateViewModel: LoginStateViewModel
 ) {
+
+    LaunchedEffect(Unit) {
+        loginStateViewModel.saveAuthColor(0xfffdce02)
+    }
     IniloScaffold(
-        onBack = { onBack() },
+        onBack = { onRoute(PowerScreenNavigation.Back) },
         pageTitle = "",
         appBarColor = Color(0xfffdce02)
     ) {
@@ -86,7 +96,7 @@ fun PowerScreen(
                 )
             }
 
-            Column(
+            /*Column(
                 modifier = Modifier
                     .padding(top = 180.dp, start = 24.dp, end = 24.dp)
                     .fillMaxWidth(),
@@ -94,6 +104,18 @@ fun PowerScreen(
                 verticalArrangement = Arrangement.Center
             ) {
                 TipEmptyState()
+            }*/
+            Column(
+                modifier = Modifier.padding(top = 32.dp, start = 24.dp, end = 24.dp)
+            ) {
+                TipCard(
+                    onClick = {
+                        if (loginStateViewModel.cardAccessCount.value > 5 && !loginStateViewModel.isLoggedIn.value) {
+                            onRoute(PowerScreenNavigation.LoginRequired)
+                        }
+                        loginStateViewModel.incrementCardAccessCount()
+                    }
+                )
             }
         }
     }

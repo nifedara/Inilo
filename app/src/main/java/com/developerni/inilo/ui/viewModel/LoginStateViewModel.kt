@@ -16,6 +16,8 @@ class LoginStateViewModel @Inject constructor(
 ): ViewModel() {
     private val _isLoggedIn = MutableStateFlow(false)
     val isLoggedIn: StateFlow<Boolean> = _isLoggedIn
+    private val _authColor = MutableStateFlow(0.toLong())
+    val authColor: StateFlow<Long> = _authColor
 
     private val _cardAccessCount = MutableStateFlow(0)
     val cardAccessCount: StateFlow<Int> = _cardAccessCount
@@ -49,6 +51,20 @@ class LoginStateViewModel @Inject constructor(
         viewModelScope.launch {
             preferenceStorage.getCardAccessCount().collectLatest {  cardAccessCount ->
                 _cardAccessCount.value = cardAccessCount
+            }
+        }
+    }
+
+    fun saveAuthColor(authColor: Long) {
+        viewModelScope.launch {
+            preferenceStorage.saveAuthColor(color = authColor)
+        }
+    }
+
+    fun getAuthColor() {
+        viewModelScope.launch {
+            preferenceStorage.getAuthColor().collectLatest {  authColor ->
+                _authColor.value = authColor
             }
         }
     }

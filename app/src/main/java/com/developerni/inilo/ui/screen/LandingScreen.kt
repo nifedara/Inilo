@@ -67,7 +67,7 @@ fun LandingScreen(
                 Column(
                     horizontalAlignment = Alignment.Start,
                     verticalArrangement = Arrangement.Top,
-                    modifier = Modifier.padding(start = 20.dp)
+                    modifier = Modifier.padding(start = 12.dp)
                         .background(Color(0xFFfbf6ef))
                         .fillMaxWidth()
                 ) {
@@ -80,7 +80,7 @@ fun LandingScreen(
                                 .size(48.dp)
                                 .clip(CircleShape)
                                 .border(
-                                    width = 1.5.dp,
+                                    width = 2.dp,
                                     shape = CircleShape,
                                     color = Color(0xFF9168f5)
                                 )
@@ -108,7 +108,7 @@ fun LandingScreen(
                 }
                 Divider(
                     color = Color(0xffede9e3),
-                    thickness = 10.dp
+                    thickness = 6.dp
                 )
             }
         }
@@ -131,7 +131,7 @@ fun LandingScreen(
                 Text(
                     text = stringResource(R.string.app_name),
                     fontFamily = iniloFontFamily,
-                    fontSize = 28.sp,
+                    fontSize = 26.sp,
                     fontWeight = FontWeight.Medium,
                     modifier = Modifier.padding(bottom = 10.dp),
                     color = Color(0xFF3b1d38)
@@ -140,7 +140,7 @@ fun LandingScreen(
                     text = stringResource(R.string.improvise_for_your_daily_needs),
                     fontFamily = iniloFontFamily,
                     fontWeight = FontWeight.Light,
-                    fontSize = 18.sp,
+                    fontSize = 16.sp,
                     color = Color(0xFF3b1d38),
                     modifier = Modifier.padding(bottom = 10.dp)
                 )
@@ -149,7 +149,7 @@ fun LandingScreen(
                     textAlign = TextAlign.Center,
                     fontFamily = iniloFontFamily,
                     fontWeight = FontWeight.Light,
-                    fontSize = 16.sp,
+                    fontSize = 14.sp,
                     color = Color(0xFF3b1d38),
                     modifier = Modifier.padding(bottom = 22.dp)
                 )
@@ -159,7 +159,7 @@ fun LandingScreen(
         stickyHeader {
             Divider(
                 color = Color(0xffede9e3),
-                thickness = 10.dp
+                thickness = 8.dp
             )
 
             Card(
@@ -169,7 +169,7 @@ fun LandingScreen(
             ) {
                 Text(
                     text = stringResource(R.string.quick_actions),
-                    fontSize = 22.5.sp,
+                    fontSize = 21.sp,
                     fontFamily = iniloFontFamily,
                     fontWeight = FontWeight.Medium,
                     modifier = Modifier.padding(start = 24.dp, top = 16.dp, bottom = 10.dp),
@@ -215,7 +215,7 @@ fun LandingScreen(
                     Text(
                         text = stringResource(R.string.explore_solutions),
                         fontFamily = iniloFontFamily,
-                        fontSize = 22.5.sp,
+                        fontSize = 21.sp,
                         fontWeight = FontWeight.Medium,
                         modifier = Modifier.padding(top = 20.dp, bottom = 10.dp, start = 24.dp),
                         color = Color(0xFF3b1d38)

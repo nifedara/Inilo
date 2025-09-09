@@ -19,6 +19,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.developerni.inilo.R
 import com.developerni.inilo.ui.component.util.iniloFontFamily
 
@@ -47,6 +48,7 @@ fun QuickActionCard(name: Int, modifier: Modifier, color: Color, icon: Int) {
                     text = stringResource(name),
                     fontFamily = iniloFontFamily,
                     fontWeight = FontWeight.Light,
+                    fontSize = 14.sp,
                     color = Color(0xFFfbf6ef),
                     modifier = Modifier.padding(top = 10.dp)
                 )

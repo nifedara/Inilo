@@ -17,4 +17,8 @@ interface PreferenceStorage {
     suspend fun saveToken(token: String)
 
     fun getToken(): Flow<String>
+
+    suspend fun saveAuthColor(color: Long)
+
+    fun getAuthColor(): Flow<Long>
 }

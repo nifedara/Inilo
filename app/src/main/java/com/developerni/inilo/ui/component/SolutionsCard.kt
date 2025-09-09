@@ -75,7 +75,7 @@ fun SolutionsCard(modifier: Modifier,
                     text = stringResource(title),
                     fontFamily = iniloFontFamily,
                     fontWeight = FontWeight.Medium,
-                    fontSize = 18.sp,
+                    fontSize = 16.sp,
                     modifier = Modifier.padding(top = 10.dp),
                     color = textColor
                 )

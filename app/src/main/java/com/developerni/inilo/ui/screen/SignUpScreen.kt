@@ -41,6 +41,7 @@ import com.developerni.inilo.R
 import com.developerni.inilo.ui.component.IniloScaffold
 import com.developerni.inilo.ui.component.util.iniloFontFamily
 import com.developerni.inilo.ui.viewModel.AuthViewModel
+import com.developerni.inilo.ui.viewModel.LoginStateViewModel
 import com.developerni.inilo.ui.viewModel.util.AuthVMState
 import com.inilo.data.model.FirebaseAuthRequest
 
@@ -51,9 +52,13 @@ enum class SignUpScreenNavigation {
 @Composable
 fun SignUpScreen(
     onRoute: (SignUpScreenNavigation) -> Unit,
+    loginStateViewModel: LoginStateViewModel
 ) {
     val authViewModel: AuthViewModel = hiltViewModel()
     val vmState = authViewModel.vmState.collectAsState()
+
+    loginStateViewModel.getAuthColor()
+    val authColor = loginStateViewModel.authColor.collectAsState().value
 
     LaunchedEffect(vmState.value) {
         when (vmState.value) {
@@ -69,7 +74,7 @@ fun SignUpScreen(
         onBack = { onRoute(SignUpScreenNavigation.Back) },
         pageTitle = "Sign up",
         appBarColor = Color(0xFFfbf6ef),
-        backButtonColor = Color(0xFF9168f5),
+        backButtonColor = Color(authColor),
         backButtonIconColor = Color(0xFFfbf6ef),
     ) {
         var email by rememberSaveable { mutableStateOf("") }
@@ -143,7 +148,7 @@ fun SignUpScreen(
                 enabled = email.isNotEmpty() && password.isNotEmpty(),
                 shape = RoundedCornerShape(16.dp),
                 modifier = Modifier.fillMaxWidth(),
-                colors = ButtonDefaults.buttonColors(Color(0xFF9168f5), contentColor = Color(0xFFfbf6ef))
+                colors = ButtonDefaults.buttonColors(Color(authColor), contentColor = Color(0xFFfbf6ef))
             ) {
                 Text(
                     text = stringResource(R.string.complete),
