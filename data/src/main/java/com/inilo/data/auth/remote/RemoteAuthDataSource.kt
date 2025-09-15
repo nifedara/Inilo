@@ -5,6 +5,6 @@ import kotlinx.coroutines.flow.Flow
 
 
 interface RemoteAuthDataSource {
-    suspend fun signUp(): Flow<Resource<Any>>
-    suspend fun signIn(): Flow<Resource<Any>>
+    fun signUp(): Flow<Resource<Any>>
+    fun signIn(): Flow<Resource<Any>>
 }

@@ -18,6 +18,8 @@ import com.developerni.inilo.ui.screen.LoginRequiredScreen
 import com.developerni.inilo.ui.screen.LoginRequiredScreenNavigation
 import com.developerni.inilo.ui.screen.PowerScreen
 import com.developerni.inilo.ui.screen.PowerScreenNavigation
+import com.developerni.inilo.ui.screen.ProfileScreen
+import com.developerni.inilo.ui.screen.ProfileScreenNavigation
 import com.developerni.inilo.ui.screen.SafetyAndSecurityScreen
 import com.developerni.inilo.ui.screen.SafetyAndSecurityScreenNavigation
 import com.developerni.inilo.ui.screen.SignInScreen
@@ -69,7 +71,10 @@ fun AppNavigation(
                             }
                         }
                     },
-                    loginStateViewModel = viewModel
+                    onProfileClick = {
+                        navController.navigate(Navigate.Screen.ProfileScreen.route)
+                    },
+                    loginStateViewModel = viewModel,
                 )
             }
 
@@ -176,6 +181,19 @@ fun AppNavigation(
                         when (it) {
                             SignInScreenNavigation.Back -> { navController.popBackStack() }
                             SignInScreenNavigation.SignInComplete -> { navController.navigate(Navigate.Screen.LandingScreen.route) }
+                        }
+                    },
+                    loginStateViewModel = viewModel,
+                )
+            }
+
+            composable(route = Navigate.Screen.ProfileScreen.route) {
+                ProfileScreen(
+                    onRoute = {
+                        when (it) {
+                            ProfileScreenNavigation.Back -> { navController.popBackStack() }
+                            ProfileScreenNavigation.Logout -> {  }
+                            ProfileScreenNavigation.EditQuickActionsTab -> {}
                         }
                     },
                     loginStateViewModel = viewModel,
