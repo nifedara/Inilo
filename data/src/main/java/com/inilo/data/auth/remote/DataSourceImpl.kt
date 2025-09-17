@@ -21,7 +21,7 @@ class DataSourceImpl @Inject constructor(
 ): FirebaseDataSource, RemoteAuthDataSource {
     val auth = FirebaseAuth.getInstance()
 
-    override suspend fun signUp(
+    override fun signUp(
         authRequest: FirebaseAuthRequest
     ): Flow<FirebaseToken> = flow {
 
@@ -57,7 +57,7 @@ class DataSourceImpl @Inject constructor(
         }
     }
 
-    override suspend fun signIn(
+    override fun signIn(
         authRequest: FirebaseAuthRequest
     ): Flow<FirebaseToken> = flow {
 
@@ -86,7 +86,7 @@ class DataSourceImpl @Inject constructor(
         }
     }
 
-    override suspend fun signUp(): Flow<Resource<Any>> = flow {
+    override fun signUp(): Flow<Resource<Any>> = flow {
 
         val result = safeApiCall { apiService.signup() }
 
@@ -102,19 +102,14 @@ class DataSourceImpl @Inject constructor(
         }
     }
 
-    override suspend fun signIn(): Flow<Resource<Any>> = flow {
+    override fun signIn(): Flow<Resource<Any>> = flow {
 
         val result = safeApiCall { apiService.signin() }
 
-        if (result.isError()){
+        if (result.isSuccess()){
+            emit(Resource.success(result.message))
+        } else{
             emit(Resource.error(result.message))
-        }else{
-            if(!result.isSuccess()){
-                emit(Resource.error(result.message))
-            }else{
-                emit(Resource.success(result.message))
-            }
-
         }
     }
 }

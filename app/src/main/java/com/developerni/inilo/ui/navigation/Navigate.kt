@@ -13,5 +13,6 @@ sealed class Navigate(val route: String) {
         data object LoginRequiredScreen : Navigate("login_required_screen")
         data object SignUpScreen : Navigate("signUp_screen")
         data object SignInScreen : Navigate("signIn_screen")
+        data object ProfileScreen : Navigate("profile_screen")
     }
 }

@@ -30,4 +30,6 @@
     <string name="enter_a_password">Enter a password</string>
     <string name="complete">Complete</string>
     <string name="continue_action">Continue</string>
+    <string name="generate_meals">Generate Meals</string>
+    <string name="logout">Logout</string>
 </resources>

@@ -6,6 +6,6 @@ import kotlinx.coroutines.flow.Flow
 
 interface FirebaseDataSource {
 
-    suspend fun signUp(authRequest: FirebaseAuthRequest): Flow<FirebaseToken>
-    suspend fun signIn(authRequest: FirebaseAuthRequest): Flow<FirebaseToken>
+    fun signUp(authRequest: FirebaseAuthRequest): Flow<FirebaseToken>
+    fun signIn(authRequest: FirebaseAuthRequest): Flow<FirebaseToken>
 }

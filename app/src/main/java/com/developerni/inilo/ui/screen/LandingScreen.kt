@@ -3,6 +3,7 @@ package com.developerni.inilo.ui.screen
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -51,6 +52,7 @@ import com.developerni.inilo.ui.viewModel.LoginStateViewModel
 @Composable
 fun LandingScreen(
     onSolutionClick: (SolutionScreenType) -> Unit,
+    onProfileClick: () -> Unit,
     loginStateViewModel: LoginStateViewModel
 ) {
 
@@ -77,6 +79,7 @@ fun LandingScreen(
                         Box(
                             contentAlignment = Alignment.Center,
                             modifier = Modifier
+                                .clickable{ onProfileClick() }
                                 .size(48.dp)
                                 .clip(CircleShape)
                                 .border(
@@ -187,18 +190,24 @@ fun LandingScreen(
                         .padding(start = 24.dp, end = 24.dp, bottom = 16.dp, top = 8.dp)
                 ) {
                     QuickActionCard(
+                        name = R.string.generate_meals, modifier = Modifier.weight(0.5f),
+                        color = Color(0xFF9168f5),
+                        //color = Color(0xFF02bc59),
+                        icon = R.drawable.menu
+                    )
+                    Spacer(modifier = Modifier.width(12.dp))
+                    QuickActionCard(
                         name = R.string.practice_cards, modifier = Modifier.weight(0.5f),
                         //color = Color(0xFF02bc59),
                         color = Color(0xFF9168f5),
                         icon = R.drawable.quiz
                     )
-                    Spacer(modifier = Modifier.width(12.dp))
-                    QuickActionCard(
+                    /*QuickActionCard(
                         name = R.string.safety_check, modifier = Modifier.weight(0.5f),
                         color = Color(0xFF9168f5),
                         //color = Color(0xFF02bc59),
                         icon = R.drawable.safety_check
-                    )
+                    )*/
                 }
             }
         }
