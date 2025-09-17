@@ -1,4 +1,4 @@
-from fastapi import FastAPI, Depends, HTTPException
+from fastapi import FastAPI, Depends, HTTPException, status
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 import firebase_admin
 from firebase_admin import auth, credentials
@@ -9,11 +9,11 @@ from dotenv import load_dotenv
 # Initialize Firebase Admin SDK
 firebase_creds = os.getenv("FIREBASE_CREDENTIALS")
 
-if not firebase_admin._apps:  # prevents re-init
+if not firebase_admin._apps: #prevents re-init
     cred = credentials.Certificate(json.loads(firebase_creds))
     firebase_admin.initialize_app(cred)
 
-load_dotenv()  # load .env file
+load_dotenv()  
 
 SUPABASE_URL = os.getenv("SUPABASE_URL")
 SUPABASE_KEY = os.getenv("SUPABASE_KEY")
@@ -47,6 +47,7 @@ def get_user_by_uid(uid: str):
         return response.data[0]
     return None
 
+# end points
 @app.post("/auth/signup")
 def signup(user_data=Depends(verify_token)):
     uid = user_data["uid"]
@@ -54,15 +55,20 @@ def signup(user_data=Depends(verify_token)):
 
     existing_user = get_user_by_uid(uid)
     if existing_user:
-        return {
-            "message": "User already exists",
-            "user": existing_user
-        }
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail={
+                "message": "User already exists",
+                "error": "DuplicateUser",
+                "statusCode": status.HTTP_400_BAD_REQUEST
+            }
+        )
 
     new_user = save_user(uid, email)
     return {
         "message": "User created successfully",
-        "user": new_user
+        "user": new_user,
+        "statusCode": status.HTTP_201_CREATED
     }
 
 @app.post("/auth/signin")
@@ -72,7 +78,6 @@ def signin(user_data=Depends(verify_token)):
 
     existing_user = get_user_by_uid(uid)
     if not existing_user:
-        # Optional: auto-create if somehow missing in Supabase
         save_user(uid, email)
         return {
             "message": "User signed in, new record created",
